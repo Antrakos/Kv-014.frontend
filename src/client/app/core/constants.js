@@ -12,7 +12,8 @@
     var resource = 'http://localhost:8080/api/v1/';
     return {
       BASE_URL: resource,
-      ZOO_ZONES: resource + 'zoo-zones/'
+      ZOO_ZONES: resource + 'zoo-zones/',
+      WAREHOUSES: resource + 'warehouses/'
     };
   }
 })();

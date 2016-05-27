@@ -14,7 +14,7 @@
 
   var config = {
     appErrorPrefix: '[zooFrontend Error] ',
-    appTitle: 'zooFrontend'
+    appTitle: 'Zoo Manager'
   };
 
   core.value('config', config);
@@ -28,7 +28,7 @@
       $logProvider.debugEnabled(true);
     }
     exceptionHandlerProvider.configure(config.appErrorPrefix);
-    routerHelperProvider.configure({ docTitle: config.appTitle + ': ' });
+    routerHelperProvider.configure({docTitle: config.appTitle + ': '});
   }
 
 })();
