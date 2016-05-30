@@ -10,7 +10,7 @@ angular.module('app.login', [
     var vm = this;
     vm.loading = false;
     vm.submit = function () {
-      vm.locading = true;
+      vm.loading = true;
       if (vm.data.email && vm.data.password && vm.data.email === 'test@test.com' && vm.data.password === 'test') {
         vm.postResult = 1;
         vm.loading = false;

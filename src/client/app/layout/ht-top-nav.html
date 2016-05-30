@@ -15,9 +15,9 @@
                         {{vm.navline.text}}
                     </a>
         </li>
-        <li class="dropdown dropdown-big">
-          <a href="http://www.angularjs.org" target="_blank">
-            <img src="images/AngularJS-small.png" />
+        <li class="dropdown dropdown-big" ng-controller="LoginModalCtrl as vmLoginModal">
+          <a>
+            <i class="fa fa-sign-in fa-2x" aria-hidden="true" ng-click="vmLoginModal.open()"></i>
           </a>
         </li>
         <li>

@@ -1,4 +1,4 @@
-/* global toastr:false, moment:false */
+/* global toastr:false, moment:false, $uibModal:false, $uibModalInstance:false */
 (function() {
   'use strict';
 
@@ -6,6 +6,8 @@
     .module('app.core')
     .constant('toastr', toastr)
     .constant('moment', moment)
+    .constant('$uibModal', $uibModal)
+    .constant('$uibModalInstance', $uibModalInstance)
     .constant('API_URL', urlConstants());
 
   function urlConstants() {
