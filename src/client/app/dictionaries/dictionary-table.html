@@ -1,0 +1,48 @@
+<div ng-controller="dictionariesTableController">
+  <div class="col-md-4">
+    <div class="widget wgreen">
+      <div ht-widget-header title="{{ title }}" allow-collapse="true"></div>
+      <div class="widget-content text-center text-info">
+        <!--<form>-->
+        <!--Items per page: <input type="number" ng-model="itemsPerPage">-->
+          <!--<input class="btn btn-primary form-control" type="submit" value="Update"-->
+                 <!--ng-click="fuckIt()" />-->
+        <!--</form>-->
+        <uib-pagination total-items="totalItems"
+                        ng-model="currentPage"
+                        max-size="maxSize"
+                        items-per-page="itemsPerPage"
+                        class="pagination-sm"
+                        boundary-link-numbers="false"
+                        rotate="true"
+                        ng-change="pageChanged()"
+                        boundary-links = "true"
+                        previous-text="&lsaquo;"
+                        next-text="&rsaquo;"
+                        first-text="&laquo;"
+                        last-text="&raquo;"></uib-pagination>
+
+        <table class="table table-condensed table-striped">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Animal class</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="dataItem in displayedData.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+            <td>{{ dataItem.id }}</td>
+            <td>{{ dataItem.name }}</td>
+            <td>{{ dataItem.animalClass }}</td>
+          </tr>
+          </tbody>
+        </table>
+        <p>Total items: {{totalItems}}</p>
+      </div>
+      <div class="widget-foot">
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>

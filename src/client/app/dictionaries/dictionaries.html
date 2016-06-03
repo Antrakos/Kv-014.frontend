@@ -1,0 +1,105 @@
+<section class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+        <div class="widget wblue">
+          <div ht-widget-header title="{{vmDictionaries.title}}"></div>
+        </div>
+        <div class="col-md-4">
+          <div class="widget wviolet">
+            <div ht-widget-header title="Animal classes" allow-collapse="true"></div>
+            <div class="widget-content text-center text-info">
+              <table class="table table-condensed table-striped">
+                <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="(key, value) in vmDictionaries.animalClasses">
+                  <td>{{ key }}</td>
+                  <td>{{ value }}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="widget-foot">
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <!--<pre>The selected page no: {{ vmDictionaries.familiesCurrentPage }}</pre>-->
+        <!--<pre>The selected page no: {{ vmDictionaries.familiesTotalItems }}</pre>-->
+        <!--<div class="col-md-4">-->
+        <!--<div class="widget wgreen">-->
+        <!--<div ht-widget-header title="Animal families" allow-collapse="true"></div>-->
+        <!--<div class="widget-content text-center text-info">-->
+        <!--<form>-->
+        <!--Items per page: <input type="number" ng-model="vmDictionaries.familiesItemsPerPage">-->
+        <!--</form>-->
+        <!--<uib-pagination total-items="vmDictionaries.familiesTotalItems"-->
+        <!--ng-model="vmDictionaries.familiesCurrentPage"-->
+        <!--max-size="vmDictionaries.maxSize"-->
+        <!--items-per-page="vmDictionaries.familiesItemsPerPage"-->
+        <!--class="pagination-sm"-->
+        <!--boundary-link-numbers="true"-->
+        <!--rotate="true"-->
+        <!--ng-change="vmDictionaries.pageChanged()"></uib-pagination>-->
+
+        <!--<table class="table table-condensed table-striped">-->
+        <!--<thead>-->
+        <!--<tr>-->
+        <!--<th>ID</th>-->
+        <!--<th>Name</th>-->
+        <!--<th>Animal class ID</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr ng-repeat="animalFamily in vmDictionaries.allFamilies.slice(((vmDictionaries.familiesCurrentPage-1)*vmDictionaries.familiesItemsPerPage),-->
+        <!--((vmDictionaries.familiesCurrentPage)*vmDictionaries.familiesItemsPerPage))">-->
+        <!--<td>{{animalFamily.id}}</td>-->
+        <!--<td>{{animalFamily.name}}</td>-->
+        <!--<td>{{animalFamily.animalClass}}</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</div>-->
+        <!--<div class="widget-foot">-->
+        <!--<div class="clearfix"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--Geo zones:-->
+        <div class="col-md-4">
+          <div class="widget worange">
+            <div ht-widget-header title="Geographical zones" allow-collapse="true"></div>
+            <div class="widget-content text-center text-info">
+              <table class="table table-condensed table-striped">
+                <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Region name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="geoZone in vmDictionaries.geoZones">
+                  <td>{{ geoZone.id }}</td>
+                  <td>{{ geoZone.regionName }}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="widget-foot">
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <div dict-table data="vmDictionaries.allFamilies" , items="vmDictionaries.allFamilies.length" ,
+             title="Animal families">
+
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

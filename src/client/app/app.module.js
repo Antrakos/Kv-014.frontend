@@ -7,7 +7,8 @@
     'app.admin',
     'app.dashboard',
     'app.layout',
-    'app.warehouses'
+    'app.warehouses',
+    'app.dictionaries'
   ]);
 
 })();

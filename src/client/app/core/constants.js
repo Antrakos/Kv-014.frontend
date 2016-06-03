@@ -13,7 +13,10 @@
     return {
       BASE_URL: resource,
       ZOO_ZONES: resource + 'zoo-zones/',
-      WAREHOUSES: resource + 'warehouses/'
+      WAREHOUSES: resource + 'warehouses/',
+      ANIMAL_CLASSES: resource + 'animal_classes/',
+      ANIMAL_FAMILIES: resource + 'families/',
+      GEO_ZONES: resource + 'geo_zones/'
     };
   }
 })();
