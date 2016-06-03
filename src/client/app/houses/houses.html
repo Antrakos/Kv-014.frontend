@@ -1,0 +1,53 @@
+<section class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="widget wblue">
+            <div ht-widget-header title="Houses"></div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Maximal capacity</th>
+                <th>Population</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="house in vmHouses.houses" ng-click="vmHouses.loadAnimals(house.id)">
+                <td>{{house.id}}</td>
+                <td>{{house.name}}</td>
+                <td>{{house.maxCapacity}}</td>
+                <td>{{house.maxCapacity}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="widget wgreen">
+            <div ht-widget-header title="Animals in house" allow-collapse="true"></div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Species</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="animal in vmHouses.animals">
+                <td>{{animal.id}}</td>
+                <td>{{animal.nickname}}</td>
+                <td>{{animal.species.id}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
