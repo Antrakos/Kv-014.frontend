@@ -2,6 +2,8 @@
   <section class="matter">
     <div class="container">
       <div class="row">
+
+        <!-- Main table column -->
         <div class="col-md-6">
           <div class="widget wblue">
             <div ht-widget-header title="Houses"></div>
@@ -10,44 +12,94 @@
               <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Maximal capacity</th>
+                <th>Zoo Zone</th>
+                <th>Capacity</th>
                 <th>Population</th>
               </tr>
               </thead>
               <tbody>
-              <tr ng-repeat="house in vmHouses.houses" ng-click="vmHouses.loadAnimals(house.id)">
+              <tr ng-repeat="house in vm.houses" ng-click="vm.selectHouse(house)"
+                  ng-class="{'info':vm.selectedHouse==house}">
                 <td>{{house.id}}</td>
                 <td>{{house.name}}</td>
+                <td>{{vm.getZoneName(house.zone.id)}}</td>
                 <td>{{house.maxCapacity}}</td>
-                <td>{{house.maxCapacity}}</td>
+                <td> ...</td>
               </tr>
               </tbody>
             </table>
+            <nav>
+              <ul class="pagination">
+                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                <li class="active"><a href="#">1 </a></li>
+                <li><a href="#">2</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
 
-        <div class="col-md-6">
+        <!-- Properties column -->
+        <div class="col-md-6" ng-hide="vm.selectedHouse == null">
           <div class="widget wgreen">
-            <div ht-widget-header title="Animals in house" allow-collapse="true"></div>
-            <table class="table table-hover">
-              <thead>
-              <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Species</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr ng-repeat="animal in vmHouses.animals">
-                <td>{{animal.id}}</td>
-                <td>{{animal.nickname}}</td>
-                <td>{{animal.species.id}}</td>
-              </tr>
-              </tbody>
-            </table>
+            <div ht-widget-header title="Properties"></div>
+            <form class="">
+              <div class="form-group input-group">
+                <span class="input-group-addon"> House name: </span>
+                <input type="text" class="form-control" placeholder="..." ng-model="vm.selectedHouse.name">
+              </div>
+              <div class="form-group input-group">
+                <span class="input-group-addon"> Capacity: </span>
+                <input type="text" class="form-control" placeholder="..." ng-model="vm.selectedHouse.maxCapacity">
+              </div>
+              <div class="form-group input-group">
+                <span class="input-group-addon"> Zoo zone: </span>
+                <select class="form-control" name="zooZonesDropdown"
+                        ng-options="zone.name for zone in vm.zooZones track by zone.id"
+                        ng-model="vm.selectedHouse.zone"></select>
+              </div>
+              <div class="form-group input-group">
+                <button class="btn btn-default form-control" ng-click="vm.updateHouse(vm.selectedHouse)">Save</button>
+              </div>
+            </form>
+            <br/>
+            <div class="panel panel-default">
+              <div class="panel-heading" data-toggle="collapse">Animals in the house</div>
+              <div class="panel-body" ng-hide="vm.hasAnimals()">
+                <p>No animals staged.</p>
+              </div>
+              <table class="table table-hover" ng-show="vm.hasAnimals()">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Species</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="animal in vm.animals">
+                  <td>{{animal.id}}</td>
+                  <td>{{animal.nickname}}</td>
+                  <td>{{animal.species.id}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </section>
+
+<style>
+  .input-group-addon {
+    min-width: 120px;
+  }
+  .form-control {
+    width:100%;
+  }
+
+
+
+
+</style>

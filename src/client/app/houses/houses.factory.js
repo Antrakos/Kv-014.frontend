@@ -1,19 +1,34 @@
-(function() {
+(function () {
   'use strict';
 
   angular
     .module('app.core')
-    .factory('houses', houses);
+    .factory('housesFactory', housesFactory);
 
-  houses.$inject = ['$http', 'exception', 'API_URL'];
+  housesFactory.$inject = ['$http', 'exception', 'API_URL'];
   /* @ngInject */
-  function houses($http, exception, API_URL) {
+  function housesFactory($http, exception, API_URL) {
     var service = {
       getHouses: getHouses,
-      getAnimals: getAnimals
+      getAnimals: getAnimals,
+      updateHouse: updateHouse
     };
 
     return service;
+
+    function updateHouse(house) {
+      return $http.put(API_URL.HOUSES + "/" + house.id, house)
+        .then(success)
+        .catch(fail);
+
+      function success(response) {
+        return response.data;
+      }
+
+      function fail(e) {
+        return exception.catcher('XHR Failed for updateHouse')(e);
+      }
+    }
 
     function getHouses() {
 
@@ -32,7 +47,7 @@
 
     function getAnimals(houseId) {
 
-      return $http.get('http://localhost:8080/api/v1/animals/house/'+houseId)
+      return $http.get('http://localhost:8080/api/v1/animals/house/' + houseId)
         .then(success)
         .catch(fail);
 

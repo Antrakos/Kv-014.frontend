@@ -19,11 +19,11 @@
           url: '/houses',
           templateUrl: 'app/houses/houses.html',
           controller: 'HousesController',
-          controllerAs: 'vmHouses',
+          controllerAs: 'vm',
           title: 'houses',
           settings: {
             nav: 5,
-            content: '<i class="fa fa-cubes"></i>Houses'
+            content: '<i class="glyphicon glyphicon-home"></i>Houses'
           }
         }
       }
