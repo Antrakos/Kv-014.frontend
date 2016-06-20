@@ -31,7 +31,9 @@
     }
 
     function signOut() {
-
+      return $http.get(API_URL.LOGOUT).then(function () {
+        localStorageService.remove('token');
+      });
     }
   }
 })();
