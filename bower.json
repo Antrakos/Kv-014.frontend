@@ -28,7 +28,8 @@
     "toastr": "^2.1.2",
     "angular-animate": "^1.5.3",
     "angular-bootstrap": "^1.2.5",
-    "components-font-awesome": "^4.6.1"
+    "components-font-awesome": "^4.6.1",
+    "angular-local-storage": "^0.2.7"
   },
   "resolutions": {
     "angular": "1.5.3"

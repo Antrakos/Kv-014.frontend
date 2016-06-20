@@ -3,7 +3,19 @@
 
   var core = angular.module('app.core');
 
-  core.config(toastrConfig);
+  core.config(toastrConfig)
+    .config(function (localStorageServiceProvider) {
+      localStorageServiceProvider
+        .setPrefix('zoo')
+        .setStorageType('localStorage')
+        .setNotify(false, false);
+    })
+    .run(function ($http, localStorageService) {
+      if (localStorageService.get('token')) {
+        $http.defaults.headers.common['X-Auth-Token'] = localStorageService.get('token');
+      }
+    });
+
 
   toastrConfig.$inject = ['toastr'];
   /* @ngInject */

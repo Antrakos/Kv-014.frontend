@@ -1,4 +1,4 @@
-/* global toastr:false, moment:false, $uibModal:false, $uibModalInstance:false */
+/* global toastr:false, moment:false */
 (function() {
   'use strict';
 
@@ -6,8 +6,6 @@
     .module('app.core')
     .constant('toastr', toastr)
     .constant('moment', moment)
-    .constant('$uibModal', $uibModal)
-    .constant('$uibModalInstance', $uibModalInstance)
     .constant('API_URL', urlConstants());
 
   function urlConstants() {
@@ -15,7 +13,9 @@
     return {
       BASE_URL: resource,
       ZOO_ZONES: resource + 'zoo-zones/',
-      WAREHOUSES: resource + 'warehouses/'
+      WAREHOUSES: resource + 'warehouses/',
+      LOGIN: resource + 'login',
+      LOGOUT: resource + 'logout'
     };
   }
 })();
