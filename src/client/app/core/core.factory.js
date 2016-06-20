@@ -23,14 +23,11 @@
           'Password': data.password
         }
       };
-      $http.post(API_URL.LOGIN, {}, config)
+      return $http.post(API_URL.LOGIN, {}, config)
         .then(function (response) {
           localStorageService.add('token', response.headers('x-auth-token'));
           $http.defaults.headers.common['X-Auth-Token'] = localStorageService.get('token');
-        }, function (error) {
-
-        });
-      return true; //TODO: Normal promises processing
+        }, function (error) {});
     }
 
     function signOut() {

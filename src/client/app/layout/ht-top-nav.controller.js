@@ -14,26 +14,26 @@
         });
       };
     }])
-    .controller('ModalInstanceCtrl', ['$uibModalInstance', 'UserService', function ($uibModalInstance, UserService) {
+    .controller('ModalInstanceCtrl', ['$uibModalInstance', 'UserService', 'logger', function ($uibModalInstance, UserService, logger) {
       var vm = this;
       vm.loading = false;
       vm.submit = function () {
         vm.loading = true;
         if (!vm.data.email || !vm.data.password) {
-          return false;
+          return;
         }
-        if (UserService.signIn(vm.data)) {
-          vm.postResult = 1;
+        UserService.signIn(vm.data).then(function () {
           vm.loading = false;
-          setTimeout(function () {
-            $uibModalInstance.close();
-          }, 500);
-          return true;
-        }
-        vm.postResult = 2;
-        vm.loading = false;
-        return false;
 
+          if (UserService.isLogged()) {
+            logger.info('Successfully signed in');
+            setTimeout(function () {
+              $uibModalInstance.close();
+            }, 500);
+          } else {
+            logger.error('Error happened during logging. Check your credentials and try again!');
+          }
+        });
       };
     }]);
 })();
