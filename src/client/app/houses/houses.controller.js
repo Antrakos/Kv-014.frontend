@@ -11,7 +11,7 @@
     var vm = this;
     vm.title = 'Houses';
 
-    vm.selectHouse = selectHouse;
+    vm.toggleHouseSelection = toggleHouseSelection;
     vm.animals = [];
     vm.zooZones = [
       {id:1, name:"Africa Zone"},
@@ -51,7 +51,7 @@
         }
       }
     }
-    function selectHouse(house) {
+    function toggleHouseSelection(house) {
       if (vm.selectedHouse != null && vm.selectedHouse.id == house.id) {
         vm.selectedHouse = null;
       } else {

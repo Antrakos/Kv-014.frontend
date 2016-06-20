@@ -19,7 +19,7 @@
           url: '/houses',
           templateUrl: 'app/houses/houses.html',
           controller: 'HousesController',
-          controllerAs: 'vm',
+          controllerAs: 'vmHouses',
           title: 'houses',
           settings: {
             nav: 5,

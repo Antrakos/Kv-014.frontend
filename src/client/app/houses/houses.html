@@ -18,11 +18,11 @@
               </tr>
               </thead>
               <tbody>
-              <tr ng-repeat="house in vm.houses" ng-click="vm.selectHouse(house)"
-                  ng-class="{'info':vm.selectedHouse==house}">
+              <tr ng-repeat="house in vmHouses.houses" ng-click="vmHouses.toggleHouseSelection(house)"
+                  ng-class="{'info':vmHouses.selectedHouse.id===house.id}">
                 <td>{{house.id}}</td>
                 <td>{{house.name}}</td>
-                <td>{{vm.getZoneName(house.zone.id)}}</td>
+                <td>{{vmHouses.getZoneName(house.zone.id)}}</td>
                 <td>{{house.maxCapacity}}</td>
                 <td> ...</td>
               </tr>
@@ -39,35 +39,35 @@
         </div>
 
         <!-- Properties column -->
-        <div class="col-md-6" ng-hide="vm.selectedHouse == null">
+        <div class="col-md-6" ng-hide="vmHouses.selectedHouse == null">
           <div class="widget wgreen">
             <div ht-widget-header title="Properties"></div>
             <form class="">
               <div class="form-group input-group">
                 <span class="input-group-addon"> House name: </span>
-                <input type="text" class="form-control" placeholder="..." ng-model="vm.selectedHouse.name">
+                <input type="text" class="form-control" placeholder="..." ng-model="vmHouses.selectedHouse.name">
               </div>
               <div class="form-group input-group">
                 <span class="input-group-addon"> Capacity: </span>
-                <input type="text" class="form-control" placeholder="..." ng-model="vm.selectedHouse.maxCapacity">
+                <input type="text" class="form-control" placeholder="..." ng-model="vmHouses.selectedHouse.maxCapacity">
               </div>
               <div class="form-group input-group">
                 <span class="input-group-addon"> Zoo zone: </span>
                 <select class="form-control" name="zooZonesDropdown"
-                        ng-options="zone.name for zone in vm.zooZones track by zone.id"
-                        ng-model="vm.selectedHouse.zone"></select>
+                        ng-options="zone.name for zone in vmHouses.zooZones track by zone.id"
+                        ng-model="vmHouses.selectedHouse.zone"></select>
               </div>
               <div class="form-group input-group">
-                <button class="btn btn-default form-control" ng-click="vm.updateHouse(vm.selectedHouse)">Save</button>
+                <button class="btn btn-default form-control" ng-click="vmHouses.updateHouse(vmHouses.selectedHouse)">Save</button>
               </div>
             </form>
             <br/>
             <div class="panel panel-default">
               <div class="panel-heading" data-toggle="collapse">Animals in the house</div>
-              <div class="panel-body" ng-hide="vm.hasAnimals()">
+              <div class="panel-body" ng-hide="vmHouses.hasAnimals()">
                 <p>No animals staged.</p>
               </div>
-              <table class="table table-hover" ng-show="vm.hasAnimals()">
+              <table class="table table-hover" ng-show="vmHouses.hasAnimals()">
                 <thead>
                 <tr>
                   <th>Id</th>
@@ -76,7 +76,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="animal in vm.animals">
+                <tr ng-repeat="animal in vmHouses.animals">
                   <td>{{animal.id}}</td>
                   <td>{{animal.nickname}}</td>
                   <td>{{animal.species.id}}</td>
@@ -98,8 +98,4 @@
   .form-control {
     width:100%;
   }
-
-
-
-
 </style>
