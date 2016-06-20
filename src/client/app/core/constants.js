@@ -13,7 +13,9 @@
     return {
       BASE_URL: resource,
       ZOO_ZONES: resource + 'zoo-zones/',
-      WAREHOUSES: resource + 'warehouses/'
+      WAREHOUSES: resource + 'warehouses/',
+      LOGIN: resource + 'login',
+      LOGOUT: resource + 'logout'
     };
   }
 })();

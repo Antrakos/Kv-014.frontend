@@ -1,0 +1,16 @@
+<form class="well" name="inputform" ng-submit="vmLoginController.submit()">
+  <div class="form-group has-feedback" ng-class="{'has-success': inputform.email.$dirty && inputform.email.$valid, 'has-error': inputform.email.$dirty && inputform.email.$invalid}">
+    <!--<label class="control-label" for="email">Email address</label>-->
+    <input type="email" class="form-control" name="email" id="email" ng-model="vmLoginController.data.email" placeholder="Enter email" required data-trigger="focus" bs-tooltip="'Enter your email address'">
+    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': inputform.email.$dirty && inputform.email.$valid, 'glyphicon-remove': inputform.email.$dirty && inputform.email.$invalid}"></span>
+  </div>
+  <div class="form-group has-feedback" ng-class="{'has-success': inputform.password.$dirty && inputform.password.$valid, 'has-error': inputform.password.$dirty && inputform.password.$invalid}">
+    <!--<label class="control-label" for="password">Password</label>-->
+    <input type="password" class="form-control" name="password" id="password" ng-model="vmLoginController.data.password" placeholder="Password" required  data-trigger="focus" bs-tooltip="'Enter your password'">
+    <span class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': inputform.password.$dirty && inputform.password.$valid, 'glyphicon-remove': inputform.password.$dirty && inputform.password.$invalid}"></span>
+  </div>
+  <div bs-tooltip="'Please complete all fields with valid data to submit.'" style="display: inline-block;" data-placement="right" bs-enabled="inputform.$invalid || inputform.$pristine">
+    <button class="btn btn-primary" type="submit" ng-disabled="vmLoginController.loading || inputform.$invalid || inputform.$pristine">Submit</button>
+  </div>
+  <p ng-show="vmLoginController.loading"><span class="glyphicon glyphicon-refresh"></span> Processing...</p>
+</form>
