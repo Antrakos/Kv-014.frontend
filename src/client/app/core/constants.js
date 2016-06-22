@@ -11,6 +11,7 @@
 
   function authConstants() {
     return {
+      REDIRECT_UNAUTHENTICATED: '/',
       TOKEN_HEADER: 'X-Auth-Token',
       LOCALSTORAGE_TOKEN: 'token',
       LOCALSTORAGE_USER: 'user'

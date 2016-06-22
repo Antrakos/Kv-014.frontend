@@ -1,18 +1,19 @@
-(function() {
+(function () {
   'use strict';
 
   var core = angular.module('app.core');
 
   core.config(toastrConfig)
-    .config(function (localStorageServiceProvider) {
+    .config(function (localStorageServiceProvider, $httpProvider) {
       localStorageServiceProvider
         .setPrefix('zoo')
         .setStorageType('localStorage')
         .setNotify(false, false);
+      $httpProvider.interceptors.push('AuthErrorInterceptor');
     })
-    .run(function ($http, localStorageService) {
-      if (localStorageService.get('token')) {
-        $http.defaults.headers.common['X-Auth-Token'] = localStorageService.get('token');
+    .run(function ($http, localStorageService, AUTH) {
+      if (localStorageService.get(AUTH.LOCALSTORAGE_TOKEN)) {
+        $http.defaults.headers.common[AUTH.TOKEN_HEADER] = localStorageService.get(AUTH.LOCALSTORAGE_TOKEN);
       }
     });
 
