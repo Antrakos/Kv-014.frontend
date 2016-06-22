@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -21,6 +21,20 @@
           controller: 'WarehousesController',
           controllerAs: 'vmWarehouses',
           title: 'warehouses',
+          abstract: true,
+          settings: {
+            needSignIn: true
+          }
+        }
+      },
+      {
+        state: 'warehouses.supply',
+        config: {
+          url: '/:name',
+          templateUrl: 'app/warehouses/supply.html',
+          controller: 'SupplyController',
+          controllerAs: 'vmSupply',
+          title: 'supply',
           settings: {
             nav: 3,
             content: '<i class="fa fa-cubes"></i>Warehouses',
@@ -28,6 +42,7 @@
           }
         }
       }
-    ];
+    ]
+      ;
   }
 })();

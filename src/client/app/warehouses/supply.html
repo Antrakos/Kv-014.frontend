@@ -1,0 +1,42 @@
+<div class="row" ng-if="vmSupply.supply">
+
+  <div class="col-md-6 text-center">
+    <svg supply-arc="{{vmSupply.supply}}"></svg>
+  </div>
+
+  <i class="h3">Current amount: </i>
+    <span class="h3" ng-class="{'bg-danger': vmSupply.isOverflow(), 'bg-warning': vmSupply.isWarning()}"
+          style="text-decoration: underline;">{{vmSupply.supply.amount}}
+      / {{vmSupply.supply.maxCapacity}}
+    </span>
+
+  <form class="form-group" name="update_form" ng-submit="vmSupply.updateAmount()" role="form">
+
+    <div class="input-group input-group-lg">
+      <input class="form-control" type="text" ng-model="vmSupply.newAmount" pattern="\d+"
+             placeholder="New value..." required>
+        <span class="input-group-btn">
+          <button class="btn" type="submit"
+                  ng-disabled="!update_form.$valid || !vmSupply.enabledToUpdate()"
+                  ng-class="{'btn-primary': vmSupply.enabledToUpdate(),
+        'btn-disabled': !update_form.$valid || !vmSupply.enabledToUpdate()}">
+            Update
+          </button>
+        </span>
+        <span class="input-group-btn">
+          <button class="btn btn-warning" type="reset" ng-click="vmSupply.cancelUpdate()">&times;</button>
+        </span>
+
+    </div>
+
+    <div class="progress" ng-show="vmSupply.newAmount">
+      <div class="progress-bar progress-bar-success progress-bar-striped progress-bar active" role="progressbar"
+           aria-valuenow="{{vmSupply.newAmount}}" aria-valuemin="0" aria-valuemax="{{vmSupply.supply.maxCapacity}}"
+           style="width:{{vmSupply.newAmount / vmSupply.supply.maxCapacity * 100}}%"
+           ng-class="{'progress-bar-success': vmSupply.newAmount <= vmSupply.supply.maxCapacity,
+                  'progress-bar-danger': vmSupply.newAmount > vmSupply.supply.maxCapacity}">
+      </div>
+    </div>
+
+  </form>
+</div>

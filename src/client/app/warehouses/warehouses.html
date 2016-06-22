@@ -1,23 +1,20 @@
-<section class="mainbar">
+<section class="mainbar" xmlns="http://www.w3.org/1999/html">
   <section class="matter">
     <div class="container">
       <div class="row">
-        <div class="widget wblue">
+        <div class="widget wgreen">
           <div ht-widget-header title="{{vmWarehouses.title}}"></div>
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th>Supply</th>
-              <th>Amount</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="supply in vmWarehouses.supplies">
-              <td>{{supply.supply}}</td>
-              <td>{{supply.amount}}</td>
-            </tr>
-            </tbody>
-          </table>
+          <ul class="nav nav-tabs nav-justified">
+            <li ng-repeat="supply in vmWarehouses.supplies | orderBy:'supply'" ui-sref-active="active">
+              <a class="h4" ui-sref="warehouses.supply({name:supply.supply.toLowerCase()})">
+                <i class="fa fa-exclamation-triangle"
+                   ng-show="vmWarehouses.isWarning(supply) && !vmWarehouses.isOverflow(supply)"></i>
+                <i class="fa fa-stack-overflow" ng-show="vmWarehouses.isOverflow(supply)"></i>
+                {{supply.supply}}
+              </a>
+            </li>
+          </ul>
+          <ui-view></ui-view>
         </div>
       </div>
     </div>

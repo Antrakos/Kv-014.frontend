@@ -17,7 +17,6 @@
     -webkit-font-smoothing: antialiased;
     /*font-weight: 400;*/
 }
-
 input, select {
     padding: 4px !important;
     /*width: 65% !important;*/
@@ -1856,6 +1855,53 @@ a {
         font-size: 1.5em !important;
         line-height: 1.2em !important;
     }
+}
+
+/* css formats for the warehouse-gauge (warehouses view) */
+.warehouse-gauge .domain {
+  stroke-width: 3px; /* width:  of arc */
+  stroke: #30F; /* arc color */
+}
+
+.warehouse-gauge .tick line {
+  stroke: #000;
+  stroke-width: 2px; /* big tick */
+}
+
+.warehouse-gauge .tick {
+  stroke: #000;
+  stroke-width: 1px; /* big tick */
+}
+
+.warehouse-gauge line {
+  stroke: #FF0; /* small arrow */
+}
+
+.warehouse-gauge .arc, .warehouse-gauge .cursor {
+  opacity: 0;
+}
+
+.warehouse-gauge .major {
+  fill: #fff;
+  font-size: 13px;
+  font-family: 'Play', sans-serif, sans-serif;
+  font-weight: normal;
+}
+
+.warehouse-gauge .indicator { /* center of arrow */
+  stroke: #EE3311; /* arrow color */
+  fill: #000;
+  stroke-width: 3px;
+}
+
+/* css formats for the segment display */
+.warehouse-display .on {
+  fill: #5d1167;
+}
+
+.warehouse-display .off {
+  fill: #DDD;
+  opacity: 0.15;
 }
 
 /*#endregion */

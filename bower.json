@@ -30,6 +30,8 @@
     "c3": "^0.4.11",
     "angular-bootstrap": "^1.2.5",
     "components-font-awesome": "^4.6.1",
+    "d3": "^3.5.17",
+    "iopctrl": "https://github.com/metormote/iopctrl.git",
     "angular-local-storage": "^0.2.7"
   },
   "resolutions": {
