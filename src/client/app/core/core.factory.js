@@ -7,7 +7,7 @@
     .factory('AuthErrorInterceptor', authErrorInterceptor);
 
   /* @ngInject */
-  function userService($http, localStorageService, API_URL, AUTH, logger) {
+  function userService($http, localStorageService, API_URL, AUTH, logger, $location) {
 
     return {
       signIn: signIn,
@@ -58,6 +58,7 @@
       return $http.get(API_URL.LOGOUT).then(function () {
         localStorageService.remove(AUTH.LOCALSTORAGE_TOKEN);
         localStorageService.remove(AUTH.LOCALSTORAGE_USER);
+        $location.url(AUTH.REDIRECT_UNAUTHENTICATED);
       });
     }
   }
@@ -69,7 +70,7 @@
         if (response.status === 401) {
           localStorageService.remove(AUTH.LOCALSTORAGE_TOKEN);
           localStorageService.remove(AUTH.LOCALSTORAGE_USER);
-          $location.url('/');
+          $location.url(AUTH.REDIRECT_UNAUTHENTICATED);
         }
         return $q.reject(response);
       }
