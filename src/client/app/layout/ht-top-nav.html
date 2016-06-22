@@ -11,11 +11,11 @@
     <div class="pull-right navbar-logo">
       <ul class="nav navbar-nav pull-right">
         <li ng-show = "vm.getUser().email">
-          {{'Hello, ' + vm.getUser().firstName + ' ' + vm.getUser().lastName}}
+          <a>{{'Hello, ' + vm.getUser().firstName + ' ' + vm.getUser().lastName}}</a>
         </li>
         <li class="dropdown dropdown-big" ng-controller="LoginModalCtrl as vmLoginModalController">
           <a>
-            <i class="fa fa-sign-in fa-2x" aria-hidden="true" ng-click="vmLoginModalController.open()"></i>
+            <i ng-class="vm.getUser().email ? 'glyphicon glyphicon-log-out' : 'glyphicon glyphicon-log-in'" aria-hidden="true" ng-click="vmLoginModalController.open()"></i>
           </a>
         </li>
         <li>

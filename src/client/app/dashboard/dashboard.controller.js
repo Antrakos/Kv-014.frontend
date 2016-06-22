@@ -1,43 +1,46 @@
-(function() {
+(function () {
   'use strict';
 
   angular
     .module('app.dashboard')
     .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['$q', 'dataservice', 'logger'];
+  DashboardController.$inject = ['DashboardService', '$q', 'logger'];
   /* @ngInject */
-  function DashboardController($q, dataservice, logger) {
+  function DashboardController(DashboardService, $q, logger) {
     var vm = this;
-    vm.news = {
-      title: 'zooFrontend',
-      description: 'Hot Towel Angular is a SPA template for Angular developers.'
+
+    vm.general = {
+      animalsCount: 0,
+      housesCount: 0,
+      employeesCount: 0
     };
-    vm.messageCount = 0;
-    vm.people = [];
-    vm.title = 'Dashboard';
 
     activate();
 
     function activate() {
-      var promises = [getMessageCount(), getPeople()];
-      return $q.all(promises).then(function() {
+      var promises = [getAnimalsCount(), getHousesCount(), getEmployeesCount()];
+      return $q.all(promises).then(function () {
         logger.info('Activated Dashboard View');
       });
     }
 
-    function getMessageCount() {
-      return dataservice.getMessageCount().then(function(data) {
-        vm.messageCount = data;
-        return vm.messageCount;
-      });
+    function getAnimalsCount() {
+      DashboardService.getGeneral().animalsCount.success(function (data) {
+        vm.general.animalsCount = data;
+      })
     }
 
-    function getPeople() {
-      return dataservice.getPeople().then(function(data) {
-        vm.people = data;
-        return vm.people;
-      });
+    function getHousesCount() {
+      DashboardService.getGeneral().housesCount.success(function (data) {
+        vm.general.housesCount = data;
+      })
+    }
+
+    function getEmployeesCount() {
+      DashboardService.getGeneral().employeesCount.success(function (data) {
+        vm.general.employeesCount = data;
+      })
     }
   }
 })();

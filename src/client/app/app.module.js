@@ -4,6 +4,7 @@
   angular.module('app', [
     'app.core',
     'app.widgets',
+    'app.index',
     'app.admin',
     'app.dashboard',
     'app.layout',

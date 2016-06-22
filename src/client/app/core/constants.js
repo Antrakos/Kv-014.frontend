@@ -1,4 +1,4 @@
-/* global toastr:false, moment:false */
+/* global toastr:false, moment:false, d3:false, c3:false */
 (function() {
   'use strict';
 
@@ -6,6 +6,8 @@
     .module('app.core')
     .constant('toastr', toastr)
     .constant('moment', moment)
+    .constant('d3', d3)
+    .constant('c3', c3)
     .constant('API_URL', urlConstants())
     .constant('AUTH', authConstants());
 
@@ -22,6 +24,11 @@
     var resource = 'http://localhost:8080/api/v1/';
     return {
       BASE_URL: resource,
+      DASHBOARD: resource + 'dashboard/',
+      TASKS: resource + 'tasks/',
+      ANIMALS: resource + 'animals/',
+      HOUSES: resource + 'houses/',
+      EMPLOYEES: resource + 'employees/',
       ZOO_ZONES: resource + 'zoo-zones/',
       WAREHOUSES: resource + 'warehouses/',
       LOGIN: resource + 'login',
