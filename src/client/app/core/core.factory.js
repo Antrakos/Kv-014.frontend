@@ -6,14 +6,26 @@
     .factory('UserService', userService);
 
   /* @ngInject */
-  function userService($http, localStorageService, API_URL) {
+  function userService($http, localStorageService, API_URL, AUTH, logger) {
+
     return {
-      isLogged: isLogged,
       signIn: signIn,
-      signOut: signOut
+      signOut: signOut,
+      getUser: getUser,
+      hasToken: hasToken,
+      checkAuth: checkAuth
     };
-    function isLogged() {
-      return localStorageService.get('token') != null;
+
+    function getUser() {
+      return localStorageService.get(AUTH.LOCALSTORAGE_USER);
+    }
+
+    function hasToken() {
+      return localStorageService.get(AUTH.LOCALSTORAGE_TOKEN) != null;
+    }
+
+    function checkAuth() {
+      return $http.get(API_URL.USER);
     }
 
     function signIn(data) {
@@ -23,16 +35,28 @@
           'Password': data.password
         }
       };
+
+      localStorageService.remove(AUTH.LOCALSTORAGE_TOKEN);
+
       return $http.post(API_URL.LOGIN, {}, config)
-        .then(function (response) {
-          localStorageService.add('token', response.headers('x-auth-token'));
-          $http.defaults.headers.common['X-Auth-Token'] = localStorageService.get('token');
-        }, function (error) {});
+        .then(success);
+
+      function success(response) {
+        localStorageService.add(AUTH.LOCALSTORAGE_TOKEN, response.headers(AUTH.TOKEN_HEADER));
+        $http.defaults.headers.common[AUTH.TOKEN_HEADER] = localStorageService.get(AUTH.LOCALSTORAGE_TOKEN);
+        logger.success('Successfully signed in as ' + data.email);
+
+        $http.get(API_URL.USER)
+          .then(function (response) {
+            localStorageService.add(AUTH.LOCALSTORAGE_USER, response.data);
+          });
+      }
     }
 
     function signOut() {
       return $http.get(API_URL.LOGOUT).then(function () {
-        localStorageService.remove('token');
+        localStorageService.remove(AUTH.LOCALSTORAGE_TOKEN);
+        localStorageService.remove(AUTH.LOCALSTORAGE_USER);
       });
     }
   }

@@ -23,7 +23,8 @@
           title: 'warehouses',
           settings: {
             nav: 3,
-            content: '<i class="fa fa-cubes"></i>Warehouses'
+            content: '<i class="fa fa-cubes"></i>Warehouses',
+            needSignIn: true
           }
         }
       }

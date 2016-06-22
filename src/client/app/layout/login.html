@@ -1,4 +1,4 @@
-<form class="well" name="inputform" ng-submit="vmLoginController.submit()">
+<form class="well" name="inputform" ng-submit="vmLoginController.submit()" method="POST">
   <div class="form-group has-feedback" ng-class="{'has-success': inputform.email.$dirty && inputform.email.$valid, 'has-error': inputform.email.$dirty && inputform.email.$invalid}">
     <!--<label class="control-label" for="email">Email address</label>-->
     <input type="email" class="form-control" name="email" id="email" ng-model="vmLoginController.data.email" placeholder="Enter email" required data-trigger="focus" bs-tooltip="'Enter your email address'">

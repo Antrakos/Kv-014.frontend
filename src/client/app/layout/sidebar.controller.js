@@ -5,12 +5,13 @@
     .module('app.layout')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$state', 'routerHelper'];
+  SidebarController.$inject = ['$state', 'routerHelper', 'UserService'];
   /* @ngInject */
-  function SidebarController($state, routerHelper) {
+  function SidebarController($state, routerHelper, UserService) {
     var vm = this;
     var states = routerHelper.getStates();
     vm.isCurrent = isCurrent;
+    vm.isUserSignedIn = UserService.hasToken;
 
     activate();
 

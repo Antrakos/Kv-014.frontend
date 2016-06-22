@@ -2,10 +2,16 @@
   'use strict';
   angular
     .module('app.layout')
+    .controller('TopNavController', ['$scope', 'UserService', 'config', function ($scope, UserService, config) {
+      var vm = this;
+      vm.title = config.appTitle;
+      vm.getUser = UserService.getUser;
+      $scope.isCollapsed = true;
+    }])
     .controller('LoginModalCtrl', ['$uibModal', 'UserService', 'logger', function ($uibModal, UserService, logger) {
       var vm = this;
       vm.open = function () {
-        if (UserService.isLogged()) {
+        if (UserService.hasToken()) {
           $uibModal.open({
             animation: true,
             size: 'sm',
@@ -44,18 +50,16 @@
         if (!vm.data.email || !vm.data.password) {
           return;
         }
-        UserService.signIn(vm.data).then(function () {
-          vm.loading = false;
 
-          if (UserService.isLogged()) {
-            logger.info('Successfully signed in');
-            setTimeout(function () {
+        UserService.signIn(vm.data)
+          .then(function () {
+              vm.loading = false;
               $uibModalInstance.close();
-            }, 500);
-          } else {
-            logger.error('Error happened during logging. Check your credentials and try again!');
-          }
-        });
+            },
+            function () {
+              vm.loading = false;
+              logger.error('Error happened during logging. Check your credentials and try again!');
+            });
       };
     }]);
 })();
