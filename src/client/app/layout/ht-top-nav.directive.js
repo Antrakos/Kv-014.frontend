@@ -9,7 +9,7 @@
   function htTopNav() {
     var directive = {
       bindToController: true,
-      controller: TopNavController,
+      controller: 'TopNavController',
       controllerAs: 'vm',
       restrict: 'EA',
       scope: {
@@ -17,15 +17,7 @@
       },
       templateUrl: 'app/layout/ht-top-nav.html'
     };
-
-    TopNavController.$inject = ['$scope'];
-
-    /* @ngInject */
-    function TopNavController($scope) {
-      var vm = this;
-      $scope.isCollapsed = true;
-    }
-
+    
     return directive;
   }
 })();

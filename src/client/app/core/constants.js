@@ -6,7 +6,16 @@
     .module('app.core')
     .constant('toastr', toastr)
     .constant('moment', moment)
-    .constant('API_URL', urlConstants());
+    .constant('API_URL', urlConstants())
+    .constant('AUTH', authConstants());
+
+  function authConstants() {
+    return {
+      TOKEN_HEADER: 'X-Auth-Token',
+      LOCALSTORAGE_TOKEN: 'token',
+      LOCALSTORAGE_USER: 'user'
+    }
+  }
 
   function urlConstants() {
     var resource = 'http://localhost:8080/api/v1/';
@@ -15,7 +24,8 @@
       ZOO_ZONES: resource + 'zoo-zones/',
       WAREHOUSES: resource + 'warehouses/',
       LOGIN: resource + 'login',
-      LOGOUT: resource + 'logout'
+      LOGOUT: resource + 'logout',
+      USER: resource + 'user'
     };
   }
 })();
