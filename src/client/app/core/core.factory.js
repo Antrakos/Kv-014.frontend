@@ -3,7 +3,8 @@
 
   angular
     .module('app.core')
-    .factory('UserService', userService);
+    .factory('UserService', userService)
+    .factory('AuthErrorInterceptor', authErrorInterceptor);
 
   /* @ngInject */
   function userService($http, localStorageService, API_URL, AUTH, logger) {
@@ -59,5 +60,20 @@
         localStorageService.remove(AUTH.LOCALSTORAGE_USER);
       });
     }
+  }
+
+  /* @ngInject */
+  function authErrorInterceptor($location, $q, localStorageService, AUTH) {
+    return {
+      'responseError': function(response) {
+        if (response.status === 401) {
+          localStorageService.remove(AUTH.LOCALSTORAGE_TOKEN);
+          localStorageService.remove(AUTH.LOCALSTORAGE_USER);
+          $location.url('/');
+        }
+        return $q.reject(response);
+      }
+    }
+
   }
 })();
