@@ -23,7 +23,8 @@
           title: 'Admin',
           settings: {
             nav: 2,
-            content: '<i class="fa fa-blind"></i> Admin'
+            content: '<i class="fa fa-blind"></i> Admin',
+            needSignIn: true
           }
         }
       }

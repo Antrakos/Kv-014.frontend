@@ -51,10 +51,6 @@
             localStorageService.add(AUTH.LOCALSTORAGE_USER, response.data);
           });
       }
-
-      function fail(response) {
-        logger.error('Unable to sign in: ' + response.data.message);
-      }
     }
 
     function signOut() {
