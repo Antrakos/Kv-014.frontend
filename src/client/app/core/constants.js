@@ -33,7 +33,9 @@
       WAREHOUSES: resource + 'warehouses/',
       LOGIN: resource + 'login',
       LOGOUT: resource + 'logout',
-      USER: resource + 'user'
+      USER: resource + 'user',
+      TASK_TYPES: resource + 'task-types/'
+
     };
   }
 })();

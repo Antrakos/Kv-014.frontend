@@ -1,0 +1,268 @@
+<section id="taks-view" class="mainbar">
+  <section class="matter">
+    <div class="container">
+
+      <ul class="nav nav-pills">
+        <li ng-class="{ active:vmTasks.isSet(1) }">
+          <a href="" ng-click="vmTasks.setTab(1)">My Tasks</a>
+        </li>
+        <li ng-class="{ active:vmTasks.isSet(2) }">
+          <a href="" ng-click="vmTasks.setTab(2)">Tracking Tasks</a>
+        </li>
+        <li ng-class="{ active:vmTasks.isSet(3) }">
+          <a href="" ng-click="vmTasks.setTab(3)">New Tasks</a>
+        </li>
+      </ul>
+
+      <div class="col-md-10">
+
+        <div ng-show="vmTasks.isSet(1)" class="widget wviolet">
+
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                <input type="text" class="form-control" placeholder="MyTask table lookup" ng-model="searchMyTask">
+
+              </div>
+            </div>
+          </form>
+
+          <div ht-widget-header title="My Tasks" allow-collapse="true"></div>
+          <div class="widget-content text-center text-info">
+            <table class="table table-condensed table-striped">
+              <thead>
+              <tr>
+                <td>
+                  <a href="#" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+                    Task Status
+                    <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+                <td>
+                  <a href="#" ng-click="sortType = 'taskType'; sortReverse = !sortReverse">
+                    Task Type
+                    <span ng-show="sortType == 'taskType' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'taskType' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'Zone'; sortReverse = !sortReverse">
+                    Zone
+                    <span ng-show="sortType == 'Zone' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'Zone' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <th>Assigner</th>
+                <th>Estimated Start</th>
+                <th>Estimated Finish</th>
+                <th>Actual Start</th>
+                <th>Actual Finish</th>
+                <th>Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr
+                ng-repeat="(key, value) in vmTasks.tasksByAssignee | orderBy:sortType:sortReverse | filter:searchMyTask track by $index">
+                <td>{{value.status}}</td>
+                <td>{{value.taskType}}</td>
+                <td>{{value.zone.name}}</td>
+                <td>{{value.assigner.firstName}} {{value.assigner.lastName}}</td>
+                <td>{{value.estimatedStart | date:'medium'}}</td>
+                <td>{{value.estimatedFinish| date:'medium'}}</td>
+                <td>{{value.actualStart | date:'medium'}}</td>
+                <td>{{value.actualFinish | date:'medium'}}</td>
+                <td>{{value.description}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div ng-show="vmTasks.isSet(2)" class="widget worange">
+
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                <input type="text" class="form-control" placeholder="Tracking Tasks lookup"
+                       ng-model="searchTrackingTask">
+
+              </div>
+            </div>
+          </form>
+
+          <div ht-widget-header title="Tracking Tasks" allow-collapse="true"></div>
+          <div class="widget-content text-center text-info">
+            <table class="table table-condensed table-striped">
+              <thead>
+              <tr>
+                <td>
+                  <a href="#" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+                    Task Status
+                    <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+                <td>
+                  <a href="#" ng-click="sortType = 'taskType'; sortReverse = !sortReverse">
+                    Task Type
+                    <span ng-show="sortType == 'taskType' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'taskType' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'Zone'; sortReverse = !sortReverse">
+                    Zone
+                    <span ng-show="sortType == 'Zone' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'Zone' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+                <th>Responsible Employee</th>
+                <th>Estimated Start</th>
+                <th>Estimated Finish</th>
+                <th>Actual Start</th>
+                <th>Actual Finish</th>
+                <th>Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr
+                ng-repeat="(key, value) in vmTasks.tasksByAssigner | orderBy:sortType:sortReverse | filter:searchTrackingTask track by $index">
+                <td>{{value.status}}</td>
+                <td>{{value.taskType}}</td>
+                <td>{{value.zone.name}}</td>
+                <td>{{value.assignee.firstName}} {{value.assignee.lastName}}</td>
+                <td>{{value.estimatedStart | date:'medium'}}</td>
+                <td>{{value.estimatedFinish | date:'medium'}}</td>
+                <td>{{value.actualStart | date:'medium'}}</td>
+                <td>{{value.actualFinish | date:'medium'}}</td>
+                <td>{{value.description}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div ng-show="vmTasks.isSet(3)" class="col-md-6">
+          <div class="widget wgreen">
+            <div ht-widget-header title="{{vmTasks.title}}" allow-collapse="true"></div>
+
+            <!--  New Task Form-->
+            <form novalidate id="newTaskForm" name="newTaskForm"
+                  ng-submit="newTaskForm.$valid && vmTasks.addNewTask(allNewTasks)">
+              <fieldset class="form-group input-group">
+                <label for="TaskType">Task Type:</label>
+                <select ng-model="vmTasks.newTask.taskType" class="form-control" title="TaskType" id="TaskType"
+                        ng-options="taskType as taskType for taskType in vmTasks.taskTypes">
+                </select>
+              </fieldset>
+
+              <fieldset class="form-group input-group">
+                <label for="assignee">Assignee:</label>
+                <select class="form-control" ng-model="vmTasks.newTask.assignee.id" id="assignee" name="assignee"
+                        title="Assignee"
+                        ng-options="assignee.id as (assignee.firstName + ' ' + assignee.lastName) for assignee in vmTasks.employees track by employee.id">
+                </select>
+              </fieldset>
+
+              <fieldset class="form-group input-group">
+                <label for="StartFrom">Start From:</label>
+                <div class="row">
+                  <div class="col-md-3">
+                    <uib-timepicker ng-model="vmTasks.newTask.estimatedStart" hour-step="vmTasks.hstep"
+                                    minute-step="vmTasks.mstep"
+                                    show-meridian="vmTasks.ismeridian"></uib-timepicker>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="input-group">
+                        <input type="text" class="form-control  datetimePikerInLine" id="StartFrom"
+                               uib-datepicker-popup="{{vmTasks.format}}"
+                               ng-model="vmTasks.newTask.estimatedStart" is-open="vmTasks.popup1.opened"
+                               ng-required="true" close-text="Close"
+                               datepicker-options="vmTasks.dateOptionsStart"/>
+                          <span class="input-group-btn datetimePikerInLine">
+                              <button type="button" class="btn btn-default datetimePikerInLine"
+                                      ng-click="vmTasks.open1()">
+                                  <i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-group input-group ">
+                <label for="Completed">Completed by:</label>
+                <div class="row">
+                  <div class="col-md-3">
+                    <uib-timepicker ng-model="vmTasks.newTask.estimatedFinish" hour-step="vmTasks.hstep"
+                                    minute-step="vmTasks.mstep"
+                                    show-meridian="vmTasks.ismeridian" min="vmTasks.mintime"></uib-timepicker>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="input-group">
+                        <input type="text" class="form-control  datetimePikerInLine" id="Completed"
+                               uib-datepicker-popup="{{vmTasks.format}}"
+                               ng-model="vmTasks.newTask.estimatedFinish"
+                               is-open="vmTasks.popup2.opened"
+                               ng-required="true" close-text="Close"
+                               datepicker-options="vmTasks.dateOptionsFinish"/>
+                          <span class="input-group-btn datetimePikerInLine">
+                              <button type="button" class="btn btn-default datetimePikerInLine"
+                                      ng-click="vmTasks.open2()">
+                                  <i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-group input-group">
+                <label for="zooZone">Zone:</label>
+                <select class="form-control" ng-model="vmTasks.newTask.zone.id" id="zooZone" name="zooZone"
+                        title="zooZone"
+                        ng-options="zone.id as zone.name for zone in vmTasks.zooZones">
+                </select>
+              </fieldset>
+
+              <fieldset class="form-group input-group">
+                <label for="description">Comment:</label>
+                <textarea class="form-control" id="description" name="description"
+                          ng-model="vmTasks.newTask.description"
+                          placeholder="Write short description for the new task"
+                          title="Description" ng-maxlength="100"></textarea>
+              </fieldset>
+              <div ng-show="newTaskForm.$submitted || newTaskForm.description.$touched">
+                <span ng-show="newTaskForm.description.$error.maxlength">Message must not exceed 100 characters</span>
+              </div>
+
+              <div class="form-group input-group">
+                <button class="btn btn-primary btn-success" ng-click="vmTasks.createTask(vmTasks.newTask)">Save</button>
+                <button class="btn btn-primary" ng-click="vmTasks.resetForm()">Clean</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    </div>
+  </section>
+</section>
+<style>
+  .datetimePikerInLine {
+    margin-top: 32px;
+  }
+</style>>
