@@ -5,19 +5,48 @@
     .module('app.core')
     .factory('housesFactory', housesFactory);
 
-  housesFactory.$inject = ['$http', 'exception', 'API_URL'];
   /* @ngInject */
-  function housesFactory($http, exception, API_URL) {
+  function housesFactory($http, exception, API_URL, FILTER) {
     var service = {
       getHouses: getHouses,
       getAnimals: getAnimals,
-      updateHouse: updateHouse
+      updateHouse: updateHouse,
+      createHouse: createHouse,
+      deleteHouse: deleteHouse
     };
 
     return service;
 
+    function deleteHouse(house) {
+      return $http.delete(API_URL.HOUSES + house.id)
+        .then(success)
+        .catch(fail);
+
+      function success(response) {
+        return response;
+      }
+
+      function fail() {
+        return exception.catcher('XHR Failed for deleteHouse')(e);
+      }
+    }
+
     function updateHouse(house) {
-      return $http.put(API_URL.HOUSES + "/" + house.id, house)
+        return $http.put(API_URL.HOUSES + house.id, house)
+          .then(success)
+          .catch(fail);
+
+      function success(response) {
+        return response.data;
+      }
+
+      function fail(e) {
+        return exception.catcher('XHR Failed for updateHouse')(e);
+      }
+    }
+
+    function createHouse(house) {
+      return $http.post(API_URL.HOUSES, house)
         .then(success)
         .catch(fail);
 
@@ -26,7 +55,7 @@
       }
 
       function fail(e) {
-        return exception.catcher('XHR Failed for updateHouse')(e);
+        return exception.catcher('XHR Failed for createHouse')(e);
       }
     }
 
@@ -47,7 +76,7 @@
 
     function getAnimals(houseId) {
 
-      return $http.get('http://localhost:8080/api/v1/animals/house/' + houseId)
+      return $http.get(API_URL.ANIMALS + "?" + FILTER.HOUSE_ID + houseId)
         .then(success)
         .catch(fail);
 

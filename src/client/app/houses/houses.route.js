@@ -23,7 +23,8 @@
           title: 'houses',
           settings: {
             nav: 5,
-            content: '<i class="glyphicon glyphicon-home"></i>Houses'
+            content: '<i class="glyphicon glyphicon-home"></i>Houses',
+            needSignIn:true
           }
         }
       }

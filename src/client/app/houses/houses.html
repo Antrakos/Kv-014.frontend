@@ -6,7 +6,17 @@
         <!-- Main table column -->
         <div class="col-md-6">
           <div class="widget wblue">
-            <div ht-widget-header title="Houses"></div>
+           <!-- <div ht-widget-header title="Houses"> </div>-->
+            <div class="widget-head">
+              <div class="page-title pull-left">Houses</div>
+              <div class="pull-right">
+                <select class="form-control" id="zooZoneDisplay" name="zooZoneDisplay"
+                        ng-options="zone.name for zone in vmHouses.zooZonesFilter track by zone.id"
+                        ng-model="vmHouses.selectedZone"></select>
+
+              </div>
+              <div class="clearfix"></div>
+            </div>
             <table class="table table-hover">
               <thead>
               <tr>
@@ -19,7 +29,11 @@
               </thead>
               <tbody>
               <tr ng-repeat="house in vmHouses.houses" ng-click="vmHouses.toggleHouseSelection(house)"
-                  ng-class="{'info':vmHouses.selectedHouse.id===house.id}">
+                  ng-class="{'info':vmHouses.selectedHouse.id===house.id}"
+                  ng-show="vmHouses.selectedZone == null
+                  || vmHouses.selectedZone.id === 0
+                  || vmHouses.selectedZone.id === house.zone.id
+                  || house.id == undefined">
                 <td>{{house.id}}</td>
                 <td>{{house.name}}</td>
                 <td>{{vmHouses.getZoneName(house.zone.id)}}</td>
@@ -28,7 +42,11 @@
               </tr>
               </tbody>
             </table>
-            <nav>
+
+
+            <button class="btn btn-default" ng-click="vmHouses.addHouse()">Add</button>
+            <button class="btn btn-default" ng-click="vmHouses.deleteHouse(vmHouses.selectedHouse)">Delete</button>
+            <nav ng-hide="true">
               <ul class="pagination">
                 <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
                 <li class="active"><a href="#">1 </a></li>
@@ -42,23 +60,32 @@
         <div class="col-md-6" ng-hide="vmHouses.selectedHouse == null">
           <div class="widget wgreen">
             <div ht-widget-header title="Properties"></div>
-            <form class="">
+            <form id="houses-properties" name="propertiesForm">
               <div class="form-group input-group">
                 <span class="input-group-addon"> House name: </span>
-                <input type="text" class="form-control" placeholder="..." ng-model="vmHouses.selectedHouse.name">
+                <input type="text" class="form-control" placeholder="..." ng-model="vmHouses.copiedSelectedHouse.name"
+                       required>
               </div>
               <div class="form-group input-group">
                 <span class="input-group-addon"> Capacity: </span>
-                <input type="text" class="form-control" placeholder="..." ng-model="vmHouses.selectedHouse.maxCapacity">
+                <input type="number" min="0" class="form-control" placeholder="..."
+                       ng-model="vmHouses.copiedSelectedHouse.maxCapacity" integer required/>
               </div>
               <div class="form-group input-group">
                 <span class="input-group-addon"> Zoo zone: </span>
                 <select class="form-control" name="zooZonesDropdown"
                         ng-options="zone.name for zone in vmHouses.zooZones track by zone.id"
-                        ng-model="vmHouses.selectedHouse.zone"></select>
+                        ng-model="vmHouses.copiedSelectedHouse.zone" required></select>
               </div>
-              <div class="form-group input-group">
-                <button class="btn btn-default form-control" ng-click="vmHouses.updateHouse(vmHouses.selectedHouse)">Save</button>
+              <div class="">
+                <button ng-show="vmHouses.selectedHouse.id" class="btn btn-default form-control"
+                        ng-click="vmHouses.updateHouse(vmHouses.copiedSelectedHouse)"
+                        ng-disabled="!propertiesForm.$valid || !propertiesForm.$dirty">Update
+                </button>
+                <button ng-show="!vmHouses.selectedHouse.id" class="btn btn-default form-control"
+                        ng-click="vmHouses.createHouse(vmHouses.copiedSelectedHouse)"
+                        ng-disabled="!propertiesForm.$valid">Create
+                </button>
               </div>
             </form>
             <br/>
@@ -79,7 +106,7 @@
                 <tr ng-repeat="animal in vmHouses.animals">
                   <td>{{animal.id}}</td>
                   <td>{{animal.nickname}}</td>
-                  <td>{{animal.species.id}}</td>
+                  <td>{{animal.species.commonName}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -91,11 +118,7 @@
   </section>
 </section>
 
+
 <style>
-  .input-group-addon {
-    min-width: 120px;
-  }
-  .form-control {
-    width:100%;
-  }
+
 </style>

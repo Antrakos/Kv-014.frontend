@@ -9,7 +9,8 @@
     .constant('d3', d3)
     .constant('c3', c3)
     .constant('API_URL', urlConstants())
-    .constant('AUTH', authConstants());
+    .constant('AUTH', authConstants())
+    .constant('FILTER', filterConstants());
 
   function authConstants() {
     return {
@@ -38,5 +39,11 @@
       TASK_TYPES: resource + 'task-types/'
 
     };
+  }
+
+  function filterConstants() {
+    return {
+      HOUSE_ID: 'houseId='
+    }
   }
 })();
