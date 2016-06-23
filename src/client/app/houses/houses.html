@@ -41,11 +41,19 @@
                 <td> ...</td>
               </tr>
               </tbody>
+
             </table>
+            <div class="text-center">
+              <button type="submit" class="btn btn-success btn-lg" ng-click="vmHouses.addHouse()">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+              <button class="btn btn-danger btn-lg" ng-click="vmHouses.deleteHouse(vmHouses.selectedHouse)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
 
-
-            <button class="btn btn-default" ng-click="vmHouses.addHouse()">Add</button>
-            <button class="btn btn-default" ng-click="vmHouses.deleteHouse(vmHouses.selectedHouse)">Delete</button>
+            <!--<button class="btn btn-default" ng-click="vmHouses.addHouse()">Add</button>
+            <button class="btn btn-default" ng-click="vmHouses.deleteHouse(vmHouses.selectedHouse)">Delete</button>-->
             <nav ng-hide="true">
               <ul class="pagination">
                 <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>

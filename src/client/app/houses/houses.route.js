@@ -22,7 +22,7 @@
           controllerAs: 'vmHouses',
           title: 'houses',
           settings: {
-            nav: 5,
+            nav: 6,
             content: '<i class="glyphicon glyphicon-home"></i>Houses',
             needSignIn:true
           }
