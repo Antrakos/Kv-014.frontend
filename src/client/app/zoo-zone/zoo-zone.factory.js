@@ -101,7 +101,5 @@
         return exception.catcher(e);
       }
     }
-
   }
-
 })();

@@ -1,0 +1,132 @@
+<section class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+
+        <!-- Main table column -->
+        <div class="col-md-6">
+          <div class="widget wblue">
+           <!-- <div ht-widget-header title="Houses"> </div>-->
+            <div class="widget-head">
+              <div class="page-title pull-left">Houses</div>
+              <div class="pull-right">
+                <select class="form-control" id="zooZoneDisplay" name="zooZoneDisplay"
+                        ng-options="zone.name for zone in vmHouses.zooZonesFilter track by zone.id"
+                        ng-model="vmHouses.selectedZone"></select>
+
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Zoo Zone</th>
+                <th>Volume</th>
+                <th>Occupied</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="house in vmHouses.houses" ng-click="vmHouses.toggleHouseSelection(house)"
+                  ng-class="{'info':vmHouses.selectedHouse.id===house.id}"
+                  ng-show="vmHouses.selectedZone == null
+                  || vmHouses.selectedZone.id === 0
+                  || vmHouses.selectedZone.id === house.zone.id
+                  || house.id == undefined">
+                <td>{{house.id}}</td>
+                <td>{{house.name}}</td>
+                <td>{{vmHouses.getZoneName(house.zone.id)}}</td>
+                <td>{{house.maxCapacity}}</td>
+                <td>{{vmHouses.housePopulations[house.id.toString()]}}</td>
+              </tr>
+              </tbody>
+
+            </table>
+            <div class="text-center">
+              <button type="submit" class="btn btn-success btn-lg" ng-click="vmHouses.addHouse()">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+              <button class="btn btn-danger btn-lg" ng-click="vmHouses.deleteHouse(vmHouses.selectedHouse)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
+
+            <!--<button class="btn btn-default" ng-click="vmHouses.addHouse()">Add</button>
+            <button class="btn btn-default" ng-click="vmHouses.deleteHouse(vmHouses.selectedHouse)">Delete</button>-->
+            <nav ng-hide="true">
+              <ul class="pagination">
+                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                <li class="active"><a href="#">1 </a></li>
+                <li><a href="#">2</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Properties column -->
+        <div class="col-md-6" ng-hide="vmHouses.selectedHouse == null">
+          <div class="widget wgreen">
+            <div ht-widget-header title="Properties"></div>
+            <form id="houses-properties" name="propertiesForm">
+              <div class="form-group input-group">
+                <span class="input-group-addon"> House name: </span>
+                <input type="text" class="form-control" placeholder="..." ng-model="vmHouses.copiedSelectedHouse.name"
+                       required>
+              </div>
+              <div class="form-group input-group">
+                <span class="input-group-addon"> Volume: </span>
+                <input type="number" min="0" class="form-control" placeholder="..."
+                       ng-model="vmHouses.copiedSelectedHouse.maxCapacity" integer required/>
+              </div>
+              <div class="form-group input-group">
+                <span class="input-group-addon"> Zoo zone: </span>
+                <select class="form-control" name="zooZonesDropdown"
+                        ng-options="zone.name for zone in vmHouses.zooZones track by zone.id"
+                        ng-model="vmHouses.copiedSelectedHouse.zone" required></select>
+              </div>
+              <div class="">
+                <button ng-show="vmHouses.selectedHouse.id" class="btn btn-default form-control"
+                        ng-click="vmHouses.updateHouse(vmHouses.copiedSelectedHouse)"
+                        ng-disabled="!propertiesForm.$valid || !propertiesForm.$dirty">Update
+                </button>
+                <button ng-show="!vmHouses.selectedHouse.id" class="btn btn-default form-control"
+                        ng-click="vmHouses.createHouse(vmHouses.copiedSelectedHouse)"
+                        ng-disabled="!propertiesForm.$valid">Create
+                </button>
+              </div>
+            </form>
+            <br/>
+            <div class="panel panel-default">
+              <div class="panel-heading" data-toggle="collapse">Animals in the house</div>
+              <div class="panel-body" ng-hide="vmHouses.hasAnimals()">
+                <p>No animals staged.</p>
+              </div>
+              <table class="table table-hover" ng-show="vmHouses.hasAnimals()">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Species</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="animal in vmHouses.animals">
+                  <td>{{animal.id}}</td>
+                  <td>{{animal.nickname}}</td>
+                  <td>{{animal.species.commonName}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+
+<style>
+
+</style>
