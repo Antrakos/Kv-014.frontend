@@ -12,7 +12,8 @@
       getAnimals: getAnimals,
       updateHouse: updateHouse,
       createHouse: createHouse,
-      deleteHouse: deleteHouse
+      deleteHouse: deleteHouse,
+      getPopulations: getPopulations
     };
 
     return service;
@@ -87,6 +88,20 @@
       function fail(e) {
         return exception.catcher('XHR Failed for getAnimals')(e);
       }
+    }
+
+    function getPopulations() {
+      return $http.get(API_URL.HOUSES_POPULATIONS)
+        .then(success)
+        .catch(fail);
+    }
+
+    function success(response) {
+      return response.data;
+    }
+
+    function fail(e) {
+      return exception.catcher('XHR Failed for getPopulations')(e);
     }
   }
 })();

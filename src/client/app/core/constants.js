@@ -31,6 +31,7 @@
       TASKS: resource + 'tasks/',
       ANIMALS: resource + 'animals/',
       HOUSES: resource + 'houses/',
+      HOUSES_POPULATIONS: resource + 'houses/' + "populations",
       EMPLOYEES: resource + 'employees/',
       WAREHOUSES: resource + 'warehouses/',
       LOGIN: resource + 'login',

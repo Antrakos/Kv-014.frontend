@@ -7,21 +7,18 @@
     .directive('integer', integerDirective);
 
   /* @ngInject */
-  function HousesController($scope, housesFactory, logger) {
+  function HousesController($scope, housesFactory, logger, zooZoneService) {
     var vm = this;
     vm.title = 'Houses';
     vm.toggleHouseSelection = toggleHouseSelection;
     vm.animals = [];
     vm.houses = [];
+    vm.housePopulations = [];
 
-    vm.zooZones = [
-      {id: 1, name: "Africa Zone"},
-      {id: 3, name: "Australia zone"},
-      {id: 4, name: "North America"}
-    ];
+    vm.zooZones = [];
 
     vm.zooZonesFilter = [{id: 0, name: "All"}];
-    vm.zooZonesFilter = vm.zooZonesFilter.concat(vm.zooZones);
+
 
 
     vm.hasAnimals = function () {
@@ -43,6 +40,13 @@
     function activate() {
       housesFactory.getHouses().then(function (data) {
         vm.houses = data;
+      });
+      zooZoneService.getZooZones().then(function (data) {
+        vm.zooZones = data;
+        vm.zooZonesFilter = vm.zooZonesFilter.concat(vm.zooZones);
+      });
+      housesFactory.getPopulations().then(function (data) {
+        vm.housePopulations = data;
       });
     }
 
@@ -100,6 +104,14 @@
     function getZoneName(id) {
       for (var i = 0; i < vm.zooZones.length; i++) {
         if (vm.zooZones[i].id == id) {
+          return vm.zooZones[i].name;
+        }
+      }
+    }
+
+    function getPopulation(houseId) {
+      for (var i = 0; i < vm.populations.length; i++) {
+        if (vm.populations[i].id == id) {
           return vm.zooZones[i].name;
         }
       }
