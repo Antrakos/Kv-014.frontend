@@ -28,7 +28,7 @@
       }
 
       function fail() {
-        return exception.catcher('XHR Failed for deleteHouse')(e);
+        return exception.catcher(e);
       }
     }
 
@@ -42,7 +42,7 @@
       }
 
       function fail(e) {
-        return exception.catcher('XHR Failed for updateHouse')(e);
+        return exception.catcher(e);
       }
     }
 
@@ -56,7 +56,7 @@
       }
 
       function fail(e) {
-        return exception.catcher('XHR Failed for createHouse')(e);
+        return exception.catcher(e);
       }
     }
 
@@ -71,7 +71,7 @@
       }
 
       function fail(e) {
-        return exception.catcher('XHR Failed for getHouses')(e);
+        return exception.catcher(e);
       }
     }
 
@@ -86,7 +86,7 @@
       }
 
       function fail(e) {
-        return exception.catcher('XHR Failed for getAnimals')(e);
+        return exception.catcher(e);
       }
     }
 
@@ -101,7 +101,7 @@
     }
 
     function fail(e) {
-      return exception.catcher('XHR Failed for getPopulations')(e);
+      return exception.catcher(e);
     }
   }
 })();
