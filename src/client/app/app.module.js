@@ -8,6 +8,7 @@
     'app.admin',
     'app.dashboard',
     'app.layout',
+    'app.zooZone',
     'app.warehouses',
     'app.tasks'
   ]);

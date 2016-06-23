@@ -1,0 +1,27 @@
+<form class="form" name="zooForm" ng-submit="$ctrl.action()">
+    <div class="form-group">
+      <label for="name">Name</label><br>
+      <input id="name" placeholder="name" ng-model="$ctrl.zone.name" class="form-control" type="text" required>
+    </div>
+    <div class="form-group">
+      <label>Description</label><br>
+      <input placeholder="description" ng-model="$ctrl.zone.description" class="form-control" type="text" required>
+    </div>
+    <div class="form-group">
+      <label>House Capacity</label><br>
+      <input placeholder="houseCapacity" ng-model="$ctrl.zone.houseCapacity" class="form-control" type="number" required>
+    </div>
+
+    <div class="form-group">
+      <label>Geographical Zone</label><br>
+      <select class="form-control" ng-model="$ctrl.zone.geographicalZone"
+              ng-options="geo.regionName for geo in $parent.vmZones.geoZones" required></select>
+    </div>
+  <button type="submit" class="btn btn-success btn-sm" ng-disabled="!zooForm.$valid">
+    <span class="glyphicon glyphicon-ok"></span>
+  </button>
+  <button class="btn btn-danger btn-sm" ui-sref="zooZone">
+    <span class="glyphicon glyphicon-remove"></span>
+  </button>
+</form>
+

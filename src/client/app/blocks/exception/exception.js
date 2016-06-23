@@ -12,18 +12,13 @@
     };
     return service;
 
-    function catcher(message) {
-      return function(e) {
-        var thrownDescription;
+    function catcher(e) {
         var newMessage;
-        if (e.data && e.data.description) {
-          thrownDescription = '\n' + e.data.description;
-          newMessage = message + thrownDescription;
+        if (e.data.message) {
+          newMessage  = e.data.message;
         }
-        e.data.description = newMessage;
         logger.error(newMessage);
         return $q.reject(e);
-      };
     }
   }
 })();

@@ -1,0 +1,54 @@
+<section id="zoo-zone-view" class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="widget wlightblue">
+            <div ht-widget-header title="Zones" allow-collapse="true"></div>
+            <div class="widget-content text-center text-info">
+              <table class="table table-condensed table-striped">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>House Capacity</th>
+                  <th>Geographical Zone</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="z in vmZones.zones">
+                  <td>{{$index}}</td>
+                  <td>{{z.name}}</td>
+                  <td>{{z.description}}</td>
+                  <td>{{z.houseCapacity}}</td>
+                  <td>{{z.geographicalZone.regionName}}</td>
+                  <td>
+                    <button class="btn btn-warning btn-sm" ui-sref="zooZone.edit({zoneId: vmZones.zones.indexOf(z)})">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger btn-sm" ng-click="vmZones.deleteById(z.id, vmZones.zones.indexOf(z))">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                  </td>
+                  <td>
+                    <!--<button ng-click="vmZones.getHousesByZooZoneId(z.id)" uib-popover="{{vmZones.houses}}" popover-title="Houses" type="button" class="btn btn-default">houses</button>-->
+                    <button popover-trigger="mouseenter" ng-mouseenter="vmZones.getHousesNames(z)" popover-popup-delay="50" uib-popover="{{z.houses}}" popover-title="Houses" type="button" class="btn btn-info">
+                      <span class="glyphicon glyphicon-home"></span>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <button type="button" class="btn btn-success" ui-sref="zooZone.add">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div ui-view></div>
+    </div>
+  </section>
+</section>

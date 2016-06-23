@@ -24,12 +24,13 @@
     var resource = 'http://localhost:8080/api/v1/';
     return {
       BASE_URL: resource,
+      GEO_ZONES: resource + 'geo-zones',
+      ZOO_ZONES: resource + 'zoo-zones/',
       DASHBOARD: resource + 'dashboard/',
       TASKS: resource + 'tasks/',
       ANIMALS: resource + 'animals/',
       HOUSES: resource + 'houses/',
       EMPLOYEES: resource + 'employees/',
-      ZOO_ZONES: resource + 'zoo-zones/',
       WAREHOUSES: resource + 'warehouses/',
       LOGIN: resource + 'login',
       LOGOUT: resource + 'logout',
