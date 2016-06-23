@@ -36,6 +36,7 @@
       WAREHOUSES: resource + 'warehouses/',
       LOGIN: resource + 'login',
       LOGOUT: resource + 'logout',
+      SPECIES: resource + 'species/',
       USER: resource + 'user',
       TASK_TYPES: resource + 'task-types/'
 

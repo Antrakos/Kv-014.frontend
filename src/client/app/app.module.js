@@ -9,9 +9,10 @@
     'app.dashboard',
     'app.layout',
     'app.zooZone',
-    'app.warehouses',
     'app.houses',
-    'app.tasks'
+    'app.tasks',
+    'app.animals',
+    'app.warehouses'
   ]);
 
 })();

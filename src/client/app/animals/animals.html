@@ -1,0 +1,132 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="widget wviolet">
+                        <div ht-widget-header title="{{vmAnimal.animalsTitle}}" allow-collapse="true"></div>
+                        <div class="widget-content text-center text-info">
+                            <table class="table table-condensed table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th colspan="5">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                            <input class="form-control" ng-model="vmAnimal.search" placeholder="search"
+                                                   type="text"/></div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th><a href="#" ng-click="vmAnimal.sortType = 'id'; sortReverse = !sortReverse">#
+                                        <span ng-show="vmAnimal.sortType == 'id' && !sortReverse"
+                                              class="fa fa-caret-down"></span>
+                                        <span ng-show="vmAnimal.sortType == 'id' && sortReverse"
+                                              class="fa fa-caret-up"></span></a></th>
+                                    <th><a href="#"
+                                           ng-click="vmAnimal.sortType = 'nickname'; sortReverse = !sortReverse">Nickname
+                                        <span ng-show="vmAnimal.sortType == 'nickname' && !sortReverse"
+                                              class="fa fa-caret-down"></span>
+                                        <span ng-show="vmAnimal.sortType == 'nickname' && sortReverse"
+                                              class="fa fa-caret-up"></span></a></th>
+                                    <th><a href="#"
+                                           ng-click="vmAnimal.sortType = 'birthday'; sortReverse = !sortReverse">Birthday
+                                        <span ng-show="vmAnimal.sortType == 'birthday' && !sortReverse"
+                                              class="fa fa-caret-down"></span>
+                                        <span ng-show="vmAnimal.sortType == 'birthday' && sortReverse"
+                                              class="fa fa-caret-up"></span></a></th>
+                                    <th><a href="#"
+                                           ng-click="vmAnimal.sortType = 'species.commonName'; sortReverse = !sortReverse">Common
+                                        Name
+                                        <span ng-show="vmAnimal.sortType == 'species.commonName' && !sortReverse"
+                                              class="fa fa-caret-down"></span>
+                    <span ng-show="vmAnimal.sortType == 'species.commonName' && sortReverse"
+                          class="fa fa-caret-up"></span></a></th>
+                                    <th><a href="#"
+                                           ng-click="vmAnimal.sortType = 'species.scientificName'; sortReverse = !sortReverse">Scientific
+                                        Name
+                    <span ng-show="vmAnimal.sortType == 'species.scientificName' && !sortReverse"
+                          class="fa fa-caret-down"></span>
+                    <span ng-show="vmAnimal.sortType == 'species.scientificName' && sortReverse"
+                          class="fa fa-caret-up"></span></a></th>
+                                    <th><a href="#"
+                                           ng-click="vmAnimal.sortType = 'house.name'; sortReverse = !sortReverse">House
+                                        <span ng-show="vmAnimal.sortType == 'house.name' && !sortReverse"
+                                              class="fa fa-caret-down"></span>
+                                        <span ng-show="vmAnimal.sortType == 'house.name' && sortReverse"
+                                              class="fa fa-caret-up"></span></a></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-click="vmAnimal.moveToEdit(p)"
+                                    ng-repeat="p in vmAnimal.animals | filter: vmAnimal.search | orderBy: vmAnimal.sortType:sortReverse">
+                                    <td width="50">{{$index + 1}}</td>
+                                    <td>{{p.nickname}}</td>
+                                    <td>{{p.birthday|date}}</td>
+                                    <td width="250">{{p.species.commonName}}</td>
+                                    <td width="250">{{p.species.scientificName}}</td>
+                                    <td width="250">{{p.house.name}}</td>
+                                    <td><input class="btn-danger" type="button" value="DEL"
+                                               ng-click="vmAnimal.deleteAnimal(p)"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="widget-foot">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="widget wgreen">
+                        <div ht-widget-header
+                             title="{{vmAnimal.animal.id ? vmAnimal.editAnimalTitle : vmAnimal.newAnimalTitle}}"
+                             allow-collapse="true"></div>
+                        <div class="widget-content text-left text-info">
+                            <div class="form-group">
+                                <form name="newAnimalForm" ng-submit="vmAnimal.addAnimal()">
+                                    <div class="form-group">
+                                        <label for="nickname">Nickname:</label>
+                                        <input id="nickname" type="text" class="form-control"
+                                               ng-model="vmAnimal.animal.nickname">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="species">Species:</label>
+                                        <input id="species" type="text" name="speciesField"
+                                               ng-model="vmAnimal.animal.species"
+                                               typeahead-min-length="3"
+                                               uib-typeahead="species as species.scientificName for species in vmAnimal.species | filter:$viewValue | limitTo:8"
+                                               class="form-control" typeahead-editable="false"
+                                               typeahead-on-select="vmAnimal.getHouses()"
+                                               ng-disabled="vmAnimal.animal.id"
+                                               required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="house">House:</label>
+                                        <select id="house" name="house" ng-model="vmAnimal.animal.house"
+                                                class="form-control"
+                                                ng-disabled="newAnimalForm.speciesField.$invalid || vmAnimal.animal.id"
+                                                ng-options="house as house.name for house in vmAnimal.houses"
+                                                required></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="food">Food consumption:</label>
+                                        <input id="food" type="number" class="form-control"
+                                               ng-model="vmAnimal.animal.foodConsumption" min="1"
+                                               required>
+                                    </div>
+                                    <input type="button" ng-click="vmAnimal.animal = {}"
+                                           ng-disabled="vmAnimal.isFormEmpty()"
+                                           class="form-control btn-info" value="Clear"/>
+                                    <input type="submit" class="form-control btn-success"
+                                           data-ng-disabled="newAnimalForm.$invalid"
+                                           value="OK"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

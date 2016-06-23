@@ -14,8 +14,11 @@
 
     function catcher(e) {
         var newMessage;
+        console.info(e.data)
         if (e.data.message) {
-          newMessage  = e.data.message;
+            newMessage = e.data.message;
+        } else if (e.data.errors[0]) {
+            newMessage = e.data.errors[0].validationMessage;
         }
         logger.error(newMessage);
         return $q.reject(e);
