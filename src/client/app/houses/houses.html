@@ -20,7 +20,7 @@
             <table class="table table-hover">
               <thead>
               <tr>
-                <th>Id</th>
+                <!--<th>Id</th>-->
                 <th>Name</th>
                 <th>Zoo Zone</th>
                 <th>Volume</th>
@@ -34,7 +34,7 @@
                   || vmHouses.selectedZone.id === 0
                   || vmHouses.selectedZone.id === house.zone.id
                   || house.id == undefined">
-                <td>{{house.id}}</td>
+                <!--<td>{{house.id}}</td>-->
                 <td>{{house.name}}</td>
                 <td>{{vmHouses.getZoneName(house.zone.id)}}</td>
                 <td>{{house.maxCapacity}}</td>
@@ -105,14 +105,14 @@
               <table class="table table-hover" ng-show="vmHouses.hasAnimals()">
                 <thead>
                 <tr>
-                  <th>Id</th>
+                  <!--<th>Id</th>-->
                   <th>Name</th>
                   <th>Species</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="animal in vmHouses.animals">
-                  <td>{{animal.id}}</td>
+                 <!-- <td>{{animal.id}}</td>-->
                   <td>{{animal.nickname}}</td>
                   <td>{{animal.species.commonName}}</td>
                 </tr>
