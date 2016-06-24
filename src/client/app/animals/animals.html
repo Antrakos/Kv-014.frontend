@@ -29,12 +29,6 @@
                                         <span ng-show="vmAnimal.sortType == 'nickname' && sortReverse"
                                               class="fa fa-caret-up"></span></a></th>
                                     <th><a href="#"
-                                           ng-click="vmAnimal.sortType = 'birthday'; sortReverse = !sortReverse">Birthday
-                                        <span ng-show="vmAnimal.sortType == 'birthday' && !sortReverse"
-                                              class="fa fa-caret-down"></span>
-                                        <span ng-show="vmAnimal.sortType == 'birthday' && sortReverse"
-                                              class="fa fa-caret-up"></span></a></th>
-                                    <th><a href="#"
                                            ng-click="vmAnimal.sortType = 'species.commonName'; sortReverse = !sortReverse">Common
                                         Name
                                         <span ng-show="vmAnimal.sortType == 'species.commonName' && !sortReverse"
@@ -62,12 +56,11 @@
                                     ng-repeat="p in vmAnimal.animals | filter: vmAnimal.search | orderBy: vmAnimal.sortType:sortReverse">
                                     <td width="50">{{$index + 1}}</td>
                                     <td>{{p.nickname}}</td>
-                                    <td>{{p.birthday|date}}</td>
                                     <td width="250">{{p.species.commonName}}</td>
                                     <td width="250">{{p.species.scientificName}}</td>
                                     <td width="250">{{p.house.name}}</td>
                                     <td><input class="btn-danger" type="button" value="DEL"
-                                               ng-click="vmAnimal.deleteAnimal(p)"></td>
+                                               ng-click="vmAnimal.deleteAnimal(p); $event.stopPropagation();"></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -89,6 +82,22 @@
                                         <label for="nickname">Nickname:</label>
                                         <input id="nickname" type="text" class="form-control"
                                                ng-model="vmAnimal.animal.nickname">
+                                        <label for="birthday">Birthday:</label>
+                                        <input id="birthday" type="text" class="form-control"
+                                               ng-model="vmAnimal.animal.birthday"
+                                                ng-disabled="true">
+                                        <label for="animalsPerHouse">Animals per house:</label>
+                                        <input id="animalsPerHouse" type="text" class="form-control"
+                                               ng-model="vmAnimal.animal.species.animalsPerHouse"
+                                               ng-disabled="true">
+                                        <label for="temperatureMin">Mininum temperature:</label>
+                                        <input id="temperatureMin" type="text" class="form-control"
+                                               ng-model="vmAnimal.animal.species.temperatureMin"
+                                               ng-disabled="true">
+                                        <label for="temperatureMax">Maximum temperature:</label>
+                                        <input id="temperatureMax" type="text" class="form-control"
+                                               ng-model="vmAnimal.animal.species.temperatureMax"
+                                               ng-disabled="true">
                                     </div>
                                     <div class="form-group">
                                         <label for="species">Species:</label>
@@ -105,8 +114,9 @@
                                         <label for="house">House:</label>
                                         <select id="house" name="house" ng-model="vmAnimal.animal.house"
                                                 class="form-control"
-                                                ng-disabled="newAnimalForm.speciesField.$invalid || vmAnimal.animal.id"
+                                                ng-disabled="newAnimalForm.speciesField.$invalid"
                                                 ng-options="house as house.name for house in vmAnimal.houses"
+                                                ng-selected="vmAnimal.animal.house"
                                                 required></select>
                                     </div>
                                     <div class="form-group">
