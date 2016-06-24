@@ -112,10 +112,11 @@
     }
 
     function createTask(newTask) {
-      tasksService.createTask(newTask);
-      getTaskByAssigner();
-      getTaskByAssignee();
-      logger.info('Task saved successfully');
+      tasksService.createTask(newTask).then(function () {
+        getTaskByAssigner();
+        getTaskByAssignee();
+        logger.info('Task saved successfully');
+      });
     }
 
     function getEmployees() {
