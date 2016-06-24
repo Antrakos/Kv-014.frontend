@@ -50,19 +50,61 @@
                 </td>
 
                 <td>
-                  <a href="#" ng-click="sortType = 'Zone'; sortReverse = !sortReverse">
+                  <a href="#" ng-click="sortType = 'zone'; sortReverse = !sortReverse">
                     Zone
-                    <span ng-show="sortType == 'Zone' && !sortReverse" class="fa fa-caret-down"></span>
-                    <span ng-show="sortType == 'Zone' && sortReverse" class="fa fa-caret-up"></span>
+                    <span ng-show="sortType == 'zone' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'one' && sortReverse" class="fa fa-caret-up"></span>
                   </a>
                 </td>
 
-                <th>Assigner</th>
-                <th>Estimated Start</th>
-                <th>Estimated Finish</th>
-                <th>Actual Start</th>
-                <th>Actual Finish</th>
-                <th>Description</th>
+                <td>
+                  <a href="#" ng-click="sortType = 'assignee'; sortReverse = !sortReverse">
+                    Assigner
+                    <span ng-show="sortType == 'assignee' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'assignee' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'estimatedStart'; sortReverse = !sortReverse">
+                    Estimated Start
+                    <span ng-show="sortType == 'estimatedStart' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'estimatedStart' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'estimatedFinish'; sortReverse = !sortReverse">
+                    Estimated Finish
+                    <span ng-show="sortType == 'estimatedFinish' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'estimatedFinish' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'actualStart'; sortReverse = !sortReverse">
+                    Actual Start
+                    <span ng-show="sortType == 'actualStart' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'actualStart' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'actualFinish'; sortReverse = !sortReverse">
+                    Actual Finish
+                    <span ng-show="sortType == 'actualFinish' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'actualFinish' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'description'; sortReverse = !sortReverse">
+                    Description
+                    <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
               </tr>
               </thead>
               <tbody>
@@ -118,18 +160,61 @@
                 </td>
 
                 <td>
-                  <a href="#" ng-click="sortType = 'Zone'; sortReverse = !sortReverse">
+                  <a href="#" ng-click="sortType = 'zone'; sortReverse = !sortReverse">
                     Zone
-                    <span ng-show="sortType == 'Zone' && !sortReverse" class="fa fa-caret-down"></span>
-                    <span ng-show="sortType == 'Zone' && sortReverse" class="fa fa-caret-up"></span>
+                    <span ng-show="sortType == 'zone' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'zone' && sortReverse" class="fa fa-caret-up"></span>
                   </a>
                 </td>
-                <th>Responsible Employee</th>
-                <th>Estimated Start</th>
-                <th>Estimated Finish</th>
-                <th>Actual Start</th>
-                <th>Actual Finish</th>
-                <th>Description</th>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'assignee'; sortReverse = !sortReverse">
+                    Responsible Employee
+                    <span ng-show="sortType == 'assignee' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'assignee' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'estimatedStart'; sortReverse = !sortReverse">
+                    Estimated Start
+                    <span ng-show="sortType == 'estimatedStart' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'estimatedStart' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'estimatedFinish'; sortReverse = !sortReverse">
+                    Estimated Finish
+                    <span ng-show="sortType == 'estimatedFinish' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'estimatedFinish' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'actualStart'; sortReverse = !sortReverse">
+                    Actual Start
+                    <span ng-show="sortType == 'actualStart' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'actualStart' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'actualFinish'; sortReverse = !sortReverse">
+                    Actual Finish
+                    <span ng-show="sortType == 'actualFinish' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'actualFinish' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="#" ng-click="sortType = 'description'; sortReverse = !sortReverse">
+                    Description
+                    <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+
               </tr>
               </thead>
               <tbody>
@@ -168,7 +253,7 @@
                 <label for="assignee">Assignee:</label>
                 <select class="form-control" ng-model="vmTasks.newTask.assignee.id" id="assignee" name="assignee"
                         title="Assignee"
-                        ng-options="assignee.id as (assignee.firstName + ' ' + assignee.lastName) for assignee in vmTasks.employees track by employee.id">
+                        ng-options="assignee.id as (assignee.firstName + ' ' + assignee.lastName) for assignee in vmTasks.employees">
                 </select>
               </fieldset>
 
