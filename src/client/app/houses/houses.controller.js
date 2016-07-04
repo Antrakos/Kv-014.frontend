@@ -18,9 +18,7 @@
     vm.zooZones = [];
 
     vm.zooZonesFilter = [{id: 0, name: "All"}];
-
-
-
+    
     vm.hasAnimals = function () {
       return vm.animals.length > 0;
     };
@@ -52,15 +50,19 @@
 
     function deleteHouse(house) {
       if (house) {
-        housesFactory.deleteHouse(house)
-          .then(function () {
-            vm.houses.splice(vm.houses.indexOf(house), 1);
-            deselectHouse();
-            logger.info('House #' + house.id + ' was deleted successfully');
-          })
-          .catch(function (response) {
-            logger.info(response.data.message);
-          });
+        if (house.id) {
+          housesFactory.deleteHouse(house)
+            .then(function () {
+              vm.houses.splice(vm.houses.indexOf(house), 1);
+              deselectHouse();
+              logger.info(house.name + ' was deleted successfully');
+            })
+            .catch(function (response) {
+              logger.info(response.data.message);
+            });
+        } else {
+          toggleHouseSelection(house);
+        }
       } else {
         logger.info('Select house to delete!');
       }
@@ -79,6 +81,7 @@
         .then(function (response) {
           vm.houses.splice(vm.houses.indexOf(vm.selectedHouse), 1, response);
           deselectHouse();
+          vm.housePopulations[response.id.toString()] = 0;
           $scope.propertiesForm.$setPristine();
           logger.info('House created successfully');
         })
@@ -92,7 +95,7 @@
       housesFactory.updateHouse(house)
         .then(function (data) {
           $scope.propertiesForm.$setPristine();
-          logger.info('House #' + house.id + ' updated successfully');
+          logger.info(house.name + ' updated successfully');
           vm.houses.splice(vm.houses.indexOf(vm.selectedHouse), 1, data);
         })
         .catch(function (response) {
