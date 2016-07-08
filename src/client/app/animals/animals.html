@@ -59,8 +59,11 @@
                                     <td width="250">{{p.species.commonName}}</td>
                                     <td width="250">{{p.species.scientificName}}</td>
                                     <td width="250">{{p.house.name}}</td>
-                                    <td><input class="btn-danger" type="button" value="DEL"
-                                               ng-click="vmAnimal.deleteAnimal(p); $event.stopPropagation();"></td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" type="button"
+                                                ng-click="vmAnimal.deleteAnimal(p); $event.stopPropagation();">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -85,7 +88,7 @@
                                         <label for="birthday">Birthday:</label>
                                         <input id="birthday" type="text" class="form-control"
                                                ng-model="vmAnimal.animal.birthday"
-                                                ng-disabled="true">
+                                               ng-disabled="true">
                                         <label for="animalsPerHouse">Animals per house:</label>
                                         <input id="animalsPerHouse" type="text" class="form-control"
                                                ng-model="vmAnimal.animal.species.animalsPerHouse"
