@@ -15,6 +15,7 @@
   function authConstants() {
     return {
       REDIRECT_UNAUTHENTICATED: '/',
+      REDIRECT_AUTHENTICATED: '/user',
       TOKEN_HEADER: 'X-Auth-Token',
       LOCALSTORAGE_TOKEN: 'token',
       LOCALSTORAGE_USER: 'user'
@@ -38,7 +39,9 @@
       LOGOUT: resource + 'logout',
       SPECIES: resource + 'species/',
       USER: resource + 'user',
-      TASK_TYPES: resource + 'task-types/'
+      CHANGE_PASSWORD: resource + 'user/change-pass',
+      TASK_TYPES: resource + 'task-types/',
+      ROLES: resource + 'roles/'
 
     };
   }

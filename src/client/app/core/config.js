@@ -11,10 +11,11 @@
         .setNotify(false, false);
       $httpProvider.interceptors.push('AuthErrorInterceptor');
     })
-    .run(function ($http, localStorageService, AUTH) {
+    .run(function ($http, localStorageService, AUTH, UserService) {
       if (localStorageService.get(AUTH.LOCALSTORAGE_TOKEN)) {
         $http.defaults.headers.common[AUTH.TOKEN_HEADER] = localStorageService.get(AUTH.LOCALSTORAGE_TOKEN);
       }
+      UserService.checkAuth();
     });
 
 

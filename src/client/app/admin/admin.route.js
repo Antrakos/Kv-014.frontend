@@ -19,12 +19,13 @@
           url: '/admin',
           templateUrl: 'app/admin/admin.html',
           controller: 'AdminController',
-          controllerAs: 'vm',
+          controllerAs: 'vmAdmin',
           title: 'Admin',
           settings: {
             nav: 2,
-            content: '<i class="fa fa-blind"></i> Admin',
-            needSignIn: true
+            content: '<i class="fa fa-blind"></i> Employees',
+            needSignIn: true,
+            visibleTo: ["manager"]
           }
         }
       }

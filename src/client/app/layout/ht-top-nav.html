@@ -10,17 +10,18 @@
   <div class="navbar-collapse collapse" uib-collapse="isCollapsed">
     <div class="pull-right navbar-logo">
       <ul class="nav navbar-nav pull-right">
-        <li ng-show = "vm.getUser().email">
+        <li ng-show="vm.getUser().email">
           <a>{{'Hello, ' + vm.getUser().firstName + ' ' + vm.getUser().lastName}}</a>
+        </li>
+        <li ng-show="vm.getUser().email">
+          <a>
+            <i class="glyphicon glyphicon-user" ng-click="vm.openUserPage()"></i>
+          </a>
         </li>
         <li class="dropdown dropdown-big" ng-controller="LoginModalCtrl as vmLoginModalController">
           <a>
-            <i ng-class="vm.getUser().email ? 'glyphicon glyphicon-log-out' : 'glyphicon glyphicon-log-in'" aria-hidden="true" ng-click="vmLoginModalController.open()"></i>
-          </a>
-        </li>
-        <li>
-          <a href="http://www.gulpjs.com/" target="_blank">
-            <img src="images/gulp-tiny.png" />
+            <i ng-class="vm.getUser().email ? 'glyphicon glyphicon-log-out' : 'glyphicon glyphicon-log-in'"
+               aria-hidden="true" ng-click="vmLoginModalController.open()"></i>
           </a>
         </li>
       </ul>

@@ -12,7 +12,8 @@
     'app.houses',
     'app.tasks',
     'app.animals',
-    'app.warehouses'
+    'app.warehouses',
+    'app.user'
   ]);
 
 })();

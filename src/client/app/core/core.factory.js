@@ -14,7 +14,8 @@
       signOut: signOut,
       getUser: getUser,
       hasToken: hasToken,
-      checkAuth: checkAuth
+      checkAuth: checkAuth,
+      changePassword: changePassword
     };
 
     function getUser() {
@@ -61,16 +62,25 @@
         $location.url(AUTH.REDIRECT_UNAUTHENTICATED);
       });
     }
+
+    function changePassword(newPassword, oldPassword) {
+      var dto = {};
+      dto.newPassword = newPassword;
+      dto.confirmationPassword = oldPassword;
+
+      return $http.post(API_URL.CHANGE_PASSWORD, dto);
+    }
   }
 
   /* @ngInject */
-  function authErrorInterceptor($location, $q, localStorageService, AUTH) {
+  function authErrorInterceptor($location, $q, localStorageService, AUTH, logger) {
     return {
       'responseError': function(response) {
         if (response.status === 401) {
           localStorageService.remove(AUTH.LOCALSTORAGE_TOKEN);
           localStorageService.remove(AUTH.LOCALSTORAGE_USER);
           $location.url(AUTH.REDIRECT_UNAUTHENTICATED);
+
         }
         return $q.reject(response);
       }

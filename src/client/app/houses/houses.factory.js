@@ -27,7 +27,7 @@
         return response;
       }
 
-      function fail() {
+      function fail(e) {
         return exception.catcher(e);
       }
     }

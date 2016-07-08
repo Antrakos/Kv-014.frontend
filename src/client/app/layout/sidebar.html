@@ -6,7 +6,10 @@
       <div class="sidebar-widget"></div>
       <ul class="navi">
         <li class="nlightblue fade-selection-animation"  ng-class="vm.isCurrent(r)" ng-repeat="r in vm.navRoutes">
-          <a ui-sref="{{r.name}}" ng-bind-html="r.settings.content" ng-show="vm.isUserSignedIn() || !r.settings.needSignIn"></a>
+          <a ui-sref="{{r.name}}" ng-bind-html="r.settings.content"
+             ng-show="(vm.isUserSignedIn() && !r.settings.visibleTo)
+              || vm.isUserSignedIn() && r.settings.visibleTo && vm.checkRoles(r.settings.visibleTo)
+             || !r.settings.needSignIn"></a>
         </li>
       </ul>
     </div>

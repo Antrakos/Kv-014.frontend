@@ -2,11 +2,16 @@
   'use strict';
   angular
     .module('app.layout')
-    .controller('TopNavController', ['$scope', 'UserService', 'config', function ($scope, UserService, config) {
+    .controller('TopNavController', ['$scope', 'UserService', 'config', '$state', function ($scope, UserService, config, $state) {
       var vm = this;
       vm.title = config.appTitle;
       vm.getUser = UserService.getUser;
+      vm.openUserPage = openUserPage;
       $scope.isCollapsed = true;
+
+      function openUserPage() {
+        $state.go('user');
+      }
     }])
     .controller('LoginModalCtrl', ['$uibModal', 'UserService', 'logger', function ($uibModal, UserService, logger) {
       var vm = this;

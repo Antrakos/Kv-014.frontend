@@ -7,7 +7,7 @@
     .directive('integer', integerDirective);
 
   /* @ngInject */
-  function HousesController($scope, housesFactory, logger, zooZoneService) {
+  function HousesController(housesFactory, logger, zooZoneService) {
     var vm = this;
     vm.title = 'Houses';
     vm.toggleHouseSelection = toggleHouseSelection;
@@ -18,7 +18,7 @@
     vm.zooZones = [];
 
     vm.zooZonesFilter = [{id: 0, name: "All"}];
-    
+
     vm.hasAnimals = function () {
       return vm.animals.length > 0;
     };
@@ -56,9 +56,6 @@
               vm.houses.splice(vm.houses.indexOf(house), 1);
               deselectHouse();
               logger.info(house.name + ' was deleted successfully');
-            })
-            .catch(function (response) {
-              logger.info(response.data.message);
             });
         } else {
           toggleHouseSelection(house);
@@ -74,6 +71,7 @@
       vm.selectedHouse = newHouse;
       vm.copiedSelectedHouse = {};
       vm.animals = [];
+      vm.propertiesForm.$setPristine();
     }
 
     function createHouse(house) {
@@ -82,11 +80,8 @@
           vm.houses.splice(vm.houses.indexOf(vm.selectedHouse), 1, response);
           deselectHouse();
           vm.housePopulations[response.id.toString()] = 0;
-          $scope.propertiesForm.$setPristine();
+          vm.propertiesForm.$setPristine();
           logger.info('House created successfully');
-        })
-        .catch(function (response) {
-          logger.info(response.data.message);
         });
 
     }
@@ -94,12 +89,9 @@
     function updateHouse(house) {
       housesFactory.updateHouse(house)
         .then(function (data) {
-          $scope.propertiesForm.$setPristine();
+          vm.propertiesForm.$setPristine();
           logger.info(house.name + ' updated successfully');
           vm.houses.splice(vm.houses.indexOf(vm.selectedHouse), 1, data);
-        })
-        .catch(function (response) {
-          logger.info(response.data.message);
         });
 
     }
@@ -135,7 +127,7 @@
       } else {
         selectHouse(house);
       }
-      $scope.propertiesForm.$setPristine();
+      vm.propertiesForm.$setPristine();
     }
 
     function selectHouse(house) {

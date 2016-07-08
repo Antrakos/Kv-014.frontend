@@ -2,13 +2,95 @@
   <section class="matter">
     <div class="container">
       <div class="row">
-        <div class="widget wviolet">
-          <div ht-widget-header title="{{vm.title}}"></div>
-          <div class="widget-content user">
-            <h3>TODO: Implement Your Features</h3>
+
+        <!-- Main table column -->
+        <div class="col-md-6">
+          <div class="widget wblue">
+            <div class="widget-head">
+              <div class="page-title pull-left">Employees</div>
+              <div class="clearfix"></div>
+            </div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <!--<th>Id</th>-->
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Account enabled</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="employee in vmAdmin.employees" ng-click="vmAdmin.toggleEmployeeSelection(employee)"
+                  ng-class="{'info':vmAdmin.selectedEmployee.id===employee.id}">
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.enabled}}</td>
+              </tr>
+              </tbody>
+            </table>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-success btn-lg" ng-click="vmAdmin.addEmployee()"
+                      ng-disabled="vmAdmin.selectedEmployee && !vmAdmin.selectedEmployee.id">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+              <button class="btn btn-danger btn-lg" ng-click="vmAdmin.deleteEmployee(vmAdmin.selectedEmployee)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
           </div>
-          <div class="widget-foot">
-            <div class="clearfix"></div>
+        </div>
+
+        <!-- Properties column -->
+        <div class="col-md-6" ng-hide="vmAdmin.selectedEmployee == null">
+          <div class="widget wgreen">
+            <div ht-widget-header title="Properties"></div>
+            <form id="houses-properties" name="vmAdmin.propertiesForm">
+              <div class="form-group input-group">
+                <span class="input-group-addon"> First name: </span>
+                <input type="text" class="form-control" placeholder="..." ng-model="vmAdmin.copiedSelectedEmployee.firstName"
+                       required>
+              </div>
+              <div class="form-group input-group">
+                <span class="input-group-addon"> Last name: </span>
+                <input type="text" class="form-control" placeholder="..." ng-model="vmAdmin.copiedSelectedEmployee.lastName"
+                       required>
+              </div>
+              <div class="form-group input-group">
+                <span class="input-group-addon"> Email: </span>
+                <input type="email" class="form-control" placeholder="..." ng-model="vmAdmin.copiedSelectedEmployee.email"
+                       required>
+              </div>
+
+              <div class="form-group input-group">
+                <span class="input-group-addon"> Acc. enabled: </span>
+                <input type="checkbox" id="form-control-checkbox" class="form-control"  ng-model="vmAdmin.copiedSelectedEmployee.enabled"/>
+              </div>
+
+              <div class="form-group input-group">
+                <span class="input-group-addon"> Roles: </span>
+                <select multiple class="form-control" name="rolesMultiSelect"
+
+                        ng-model="vmAdmin.copiedSelectedEmployee.roles">
+
+                  <option ng-repeat="role in vmAdmin.roles" value="{{role.type | lowercase}}">{{role.type}}</option>
+                </select>
+              </div>
+              <div class="">
+                <button ng-show="vmAdmin.selectedEmployee.id" class="btn btn-default form-control"
+                        ng-click="vmAdmin.updateEmployee(vmAdmin.copiedSelectedEmployee)"
+                        ng-disabled="!vmAdmin.propertiesForm.$valid || !vmAdmin.propertiesForm.$dirty">Update
+                </button>
+                <button ng-show="!vmAdmin.selectedEmployee.id" class="btn btn-default form-control"
+                        ng-click="vmAdmin.createEmployee(vmAdmin.copiedSelectedEmployee)"
+                        ng-disabled="!vmAdmin.propertiesForm.$valid">Create
+                </button>
+              </div>
+            </form>
+
+
           </div>
         </div>
       </div>

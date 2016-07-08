@@ -52,14 +52,6 @@
                 <span class="glyphicon glyphicon-remove"></span>
               </button>
             </div>
-
-            <nav ng-hide="true">
-              <ul class="pagination">
-                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                <li class="active"><a href="#">1 </a></li>
-                <li><a href="#">2</a></li>
-              </ul>
-            </nav>
           </div>
         </div>
 
@@ -67,7 +59,7 @@
         <div class="col-md-6" ng-hide="vmHouses.selectedHouse == null">
           <div class="widget wgreen">
             <div ht-widget-header title="Properties"></div>
-            <form id="houses-properties" name="propertiesForm">
+            <form id="houses-properties" name="vmHouses.propertiesForm">
               <div class="form-group input-group">
                 <span class="input-group-addon"> House name: </span>
                 <input type="text" class="form-control" placeholder="..." ng-model="vmHouses.copiedSelectedHouse.name"
@@ -87,11 +79,11 @@
               <div class="">
                 <button ng-show="vmHouses.selectedHouse.id" class="btn btn-default form-control"
                         ng-click="vmHouses.updateHouse(vmHouses.copiedSelectedHouse)"
-                        ng-disabled="!propertiesForm.$valid || !propertiesForm.$dirty">Update
+                        ng-disabled="!vmHouses.propertiesForm.$valid || !vmHouses.propertiesForm.$dirty">Update
                 </button>
                 <button ng-show="!vmHouses.selectedHouse.id" class="btn btn-default form-control"
                         ng-click="vmHouses.createHouse(vmHouses.copiedSelectedHouse)"
-                        ng-disabled="!propertiesForm.$valid">Create
+                        ng-disabled="!vmHouses.propertiesForm.$valid">Create
                 </button>
               </div>
             </form>

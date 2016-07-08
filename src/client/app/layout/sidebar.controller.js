@@ -12,6 +12,7 @@
     var states = routerHelper.getStates();
     vm.isCurrent = isCurrent;
     vm.isUserSignedIn = UserService.hasToken;
+    vm.checkRoles = checkRoles;
 
     activate();
 
@@ -31,6 +32,14 @@
       }
       var menuName = route.title;
       return $state.current.title.substr(0, menuName.length) === menuName ? 'current' : '';
+    }
+
+    function checkRoles(roles) {
+      if (UserService.getUser()) {
+        return roles.some(function (v) {
+          return UserService.getUser().roles.indexOf(v) >= 0;
+        });
+      }
     }
   }
 })();
