@@ -48,7 +48,8 @@
 
     function addAnimalFunction() {
       var date = new Date();
-      vm.animal.birthday = date.getFullYear() + "-" + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+      vm.animal.birthday = date.getFullYear() + '-' +
+        ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
       console.log(date);
       console.log(vm.animal.birthday);
       return animalservice.addAnimal(vm.animal).then(function (data) {
@@ -56,8 +57,8 @@
         console.log(data);
         vm.animals.push(data);
         vm.animal = {};
-        logger.info("NEW ANIMAL ADDED");
-      })
+        logger.info('NEW ANIMAL ADDED');
+      });
     }
 
     function editAnimalFunction() {
@@ -71,16 +72,16 @@
         vm.animals[vm.animals.indexOf(a)] = data;
 
         vm.animal = {};
-        logger.info("ANIMAL HAS BEEN CHANGED");
-      })
+        logger.info('ANIMAL HAS BEEN CHANGED');
+      });
     }
 
     function deleteAnimalFunction(animal) {
       return animalservice.deleteAnimal(animal.id).then(function (data) {
         vm.animal = {};
         vm.animals.splice(vm.animals.indexOf(animal), 1);
-        logger.info("ANIMAL DELETED");
-      })
+        logger.info('ANIMAL DELETED');
+      });
     }
 
     function activate() {

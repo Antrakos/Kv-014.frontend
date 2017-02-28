@@ -19,7 +19,7 @@
       TOKEN_HEADER: 'X-Auth-Token',
       LOCALSTORAGE_TOKEN: 'token',
       LOCALSTORAGE_USER: 'user'
-    }
+    };
   }
 
   function urlConstants() {
@@ -32,7 +32,7 @@
       TASKS: resource + 'tasks/',
       ANIMALS: resource + 'animals/',
       HOUSES: resource + 'houses/',
-      HOUSES_POPULATIONS: resource + 'houses/' + "populations",
+      HOUSES_POPULATIONS: resource + 'houses/populations',
       EMPLOYEES: resource + 'employees/',
       WAREHOUSES: resource + 'warehouses/',
       LOGIN: resource + 'login',
@@ -49,6 +49,6 @@
   function filterConstants() {
     return {
       HOUSE_ID: 'houseId='
-    }
+    };
   }
 })();

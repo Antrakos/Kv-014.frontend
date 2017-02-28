@@ -21,8 +21,8 @@
           logger.error(newMessage);
         } else if (e.data.errors) {
           e.data.errors.forEach(function (item) {
-            logger.error(item.validationMessage)
-          })
+            logger.error(item.validationMessage);
+          });
         } else {
           logger.error('Unknown error');
         }

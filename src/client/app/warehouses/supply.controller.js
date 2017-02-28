@@ -46,7 +46,7 @@
 
     vm.cancelUpdate = function () {
       vm.newAmount = undefined;
-    }
+    };
 
   }
 })();

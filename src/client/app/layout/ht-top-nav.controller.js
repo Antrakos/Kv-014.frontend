@@ -2,7 +2,8 @@
   'use strict';
   angular
     .module('app.layout')
-    .controller('TopNavController', ['$scope', 'UserService', 'config', '$state', function ($scope, UserService, config, $state) {
+    .controller('TopNavController', ['$scope', 'UserService', 'config', '$state',
+      function ($scope, UserService, config, $state) {
       var vm = this;
       vm.title = config.appTitle;
       vm.getUser = UserService.getUser;
@@ -35,7 +36,8 @@
         }
       };
     }])
-    .controller('LogoutModalInstanceCtrl', ['$uibModalInstance', 'UserService', 'logger', function ($uibModalInstance, UserService, logger) {
+    .controller('LogoutModalInstanceCtrl', ['$uibModalInstance', 'UserService', 'logger',
+      function ($uibModalInstance, UserService, logger) {
       var vm = this;
       vm.submit = function () {
         UserService.signOut().then(function () {
@@ -45,9 +47,10 @@
       };
       vm.cancel = function () {
         $uibModalInstance.close();
-      }
+      };
     }])
-    .controller('LoginModalInstanceCtrl', ['$uibModalInstance', 'UserService', 'logger', function ($uibModalInstance, UserService, logger) {
+    .controller('LoginModalInstanceCtrl', ['$uibModalInstance', 'UserService', 'logger',
+      function ($uibModalInstance, UserService, logger) {
       var vm = this;
       vm.loading = false;
       vm.submit = function () {

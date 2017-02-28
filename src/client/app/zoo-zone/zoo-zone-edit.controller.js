@@ -24,7 +24,7 @@
       var zone = vm.zones.find(function (zone) {
         return zone.id === vm.selectedZone.id;
       });
-      if (typeof zone != 'undefined' ) {
+      if (typeof zone !== 'undefined' ) {
         zooZoneService.updateZooZone(vm.selectedZone.id, vm.selectedZone).then( function (data) {
             vm.zones[vm.zoneId] = data;
           }

@@ -48,8 +48,8 @@
       }
     }
 
-    function getHousesBySpecies(species_id) {
-      return $http.get(url.HOUSES + '?speciesId=' +species_id)
+    function getHousesBySpecies(speciesId) {
+      return $http.get(url.HOUSES + '?speciesId=' +speciesId)
         .then(success)
         .catch(fail);
 

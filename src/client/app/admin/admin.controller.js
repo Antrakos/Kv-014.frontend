@@ -13,7 +13,7 @@
     vm.employees = [];
     vm.roles = [];
 
-    vm.zooZonesFilter = [{id: 0, name: "All"}];
+    vm.zooZonesFilter = [{id: 0, name: 'All'}];
 
     vm.addEmployee = addEmployee;
     vm.deleteEmployee = deleteEmployee;
@@ -33,7 +33,7 @@
       });
       rolesFactory.getRoles().then(function (data) {
         vm.roles = data;
-      })
+      });
     }
 
     function deleteEmployee(employee) {
@@ -84,11 +84,11 @@
     function toggleEmployeeSelection(employee) {
 
       if (vm.selectedEmployee != null) {
-        if (vm.selectedEmployee.id == undefined) {
+        if (vm.selectedEmployee.id === undefined) {
           vm.employees.splice(vm.employees.indexOf(vm.selectedEmployee), 1);
         }
 
-        if (vm.selectedEmployee.id == employee.id) {
+        if (vm.selectedEmployee.id === employee.id) {
           deselectEmployee();
         } else {
           selectEmployee(employee);

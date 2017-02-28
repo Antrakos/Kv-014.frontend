@@ -29,43 +29,13 @@
       zone: {}
     };
 
-    // DatePiker
-    vm.newTask.estimatedStart = new Date();
-    vm.newTask.estimatedFinish = new Date();
-    vm.hstep = 1;
-    vm.mstep = 1;
-    vm.ismeridian = true;
-    vm.format = 'dd-MM-yyyy';
-    vm.dateOptionsStart = {
-      dateDisabled: disabled,
-      formatYear: 'yy',
-      maxDate: new Date(2020, 5, 22),
-      minDate: new Date(),
-      startingDay: 1
-    };
-
-    vm.dateOptionsFinish = {
-      dateDisabled: disabled,
-      formatYear: 'yy',
-      maxDate: new Date(2020, 5, 22),
-      minDate: vm.newTask.estimatedStart,
-      startingDay: 1
-    };
-
-    $scope.$watch(function () {
-      return vm.newTask.estimatedStart;
-    }, function (value) {
-      vm.dateOptionsFinish.minDate = value;
-      vm.mintime = value;
-    });
-
-    vm.altInputFormats = ['M!/d!/yyyy'];
+    createDatePicker();
 
     vm.popup1 = {
       opened: false
     };
-    vm.open1 = open1;
 
+    vm.open1 = open1;
     vm.popup2 = {
       opened: false
     };
@@ -74,12 +44,45 @@
 
     // sorting
     vm.orderByField = 'status';
+
     vm.reverseSort = false;
     vm.searchFish = '';
-
     vm.createTask = createTask;
 
     activate();
+
+    function createDatePicker() {
+      vm.newTask.estimatedStart = new Date();
+      vm.newTask.estimatedFinish = new Date();
+      vm.hstep = 1;
+      vm.mstep = 1;
+      vm.ismeridian = true;
+      vm.format = 'dd-MM-yyyy';
+      vm.dateOptionsStart = {
+        dateDisabled: disabled,
+        formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: new Date(),
+        startingDay: 1
+      };
+
+      vm.dateOptionsFinish = {
+        dateDisabled: disabled,
+        formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: vm.newTask.estimatedStart,
+        startingDay: 1
+      };
+
+      $scope.$watch(function () {
+        return vm.newTask.estimatedStart;
+      }, function (value) {
+        vm.dateOptionsFinish.minDate = value;
+        vm.mintime = value;
+      });
+
+      vm.altInputFormats = ['M!/d!/yyyy'];
+    }
 
     function activate() {
       initTabs();

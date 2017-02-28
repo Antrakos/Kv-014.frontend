@@ -37,8 +37,7 @@
           controllerAs: 'addZones',
           title: 'zones'
         }
-      }
-      ,
+      },
       {
         state: 'zooZone.edit',
         config: {

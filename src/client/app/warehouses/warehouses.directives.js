@@ -10,13 +10,12 @@
       function link(scope, elems, attrs) {
         scope.$watch('vmSupply.supply.amount', function () {
           createGuage(scope.vmSupply.supply, d3, elems[0]); // redraw amount svg on amount change
-        })
+        });
       }
-
       return {
         restrict: 'A',
         link: link
-      }
+      };
     }]);
 
   function createGuage(supply, d3, elem) {
@@ -31,9 +30,9 @@
     var tickPadding = 3;
 
     var svg = d3.select(elem)
-      .html("")
-      .attr("width", sideSize)
-      .attr("height", sideSize);
+      .html('')
+      .attr('width', sideSize)
+      .attr('height', sideSize);
 
 
     var gauge = iopctrl.arcslider()
@@ -59,13 +58,13 @@
       .negative(false) // is negative
       .decimals(0); // clear
 
-    svg.append("g")
-      .attr("class", "warehouse-gauge")
+    svg.append('g')
+      .attr('class', 'warehouse-gauge')
       .call(gauge);
 
-    svg.append("g")
-      .attr("class", "warehouse-display")
-      .attr("transform", "translate(" + (210 - numOfDigits * 20) + ',' + (300) + ")") //60, 100
+    svg.append('g')
+      .attr('class', 'warehouse-display')
+      .attr('transform', 'translate(' + (210 - numOfDigits * 20) + ',' + (300) + ')') //60, 100
       .call(segDisplay);
 
     gauge.value(supply.amount);

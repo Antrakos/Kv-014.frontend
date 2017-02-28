@@ -77,7 +77,7 @@
 
     function getAnimals(houseId) {
 
-      return $http.get(API_URL.ANIMALS + "?" + FILTER.HOUSE_ID + houseId)
+      return $http.get(API_URL.ANIMALS + '?' + FILTER.HOUSE_ID + houseId)
         .then(success)
         .catch(fail);
 

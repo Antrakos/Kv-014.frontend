@@ -117,7 +117,7 @@
       }
 
       function updateTask(task) {
-        return $http.put(API_URL.TASKS + "/" + task.id, task)
+        return $http.put(API_URL.TASKS + '/' + task.id, task)
           .then(success)
           .catch(fail);
 

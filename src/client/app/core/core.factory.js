@@ -84,7 +84,7 @@
         }
         return $q.reject(response);
       }
-    }
+    };
 
   }
 })();

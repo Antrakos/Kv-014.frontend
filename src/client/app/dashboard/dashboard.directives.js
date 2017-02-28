@@ -20,7 +20,8 @@
     .directive('taskStatistics', ['c3', 'DashboardService',
       function (c3, DashboardService) {
         return {
-          template: '<div id="taskStatus" class="col-md-5 col-md-offset-1 text-center"></div><div id="taskType" class="col-md-5 col-md-offset-1 text-center"></div>',
+          template: '<div id="taskStatus" class="col-md-5 col-md-offset-1 text-center"></div>' +
+          '<div id="taskType" class="col-md-5 col-md-offset-1 text-center"></div>',
           link: function () {
             DashboardService.getTaskStatistics().success(function (data) {
               pieChart(c3, '#taskType', 'Task types', {height: 250}, data.taskTypes.map(function (item) {
@@ -31,7 +32,7 @@
               }));
             });
           }
-        }
+        };
       }]);
   function pieChart(c3, bindto, title, size, data) {
     c3.generate({

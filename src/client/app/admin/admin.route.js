@@ -25,7 +25,7 @@
             nav: 2,
             content: '<i class="fa fa-blind"></i> Employees',
             needSignIn: true,
-            visibleTo: ["manager"]
+            visibleTo: ['manager']
           }
         }
       }

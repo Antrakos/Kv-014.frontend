@@ -28,19 +28,19 @@
     function getAnimalsCount() {
       DashboardService.getGeneral().animalsCount.success(function (data) {
         vm.general.animalsCount = data;
-      })
+      });
     }
 
     function getHousesCount() {
       DashboardService.getGeneral().housesCount.success(function (data) {
         vm.general.housesCount = data;
-      })
+      });
     }
 
     function getEmployeesCount() {
       DashboardService.getGeneral().employeesCount.success(function (data) {
         vm.general.employeesCount = data;
-      })
+      });
     }
   }
 })();

@@ -34,6 +34,9 @@
   <div id="mocha"></div>
 
   <!-- inject:testlibraries:js -->
+  <script src="/node_modules/mocha/mocha.js"></script>
+  <script src="/node_modules/chai/chai.js"></script>
+  <script src="/node_modules/sinon-chai/lib/sinon-chai.js"></script>
   <!-- endinject -->
 
   <script>
@@ -44,18 +47,107 @@
   </script>
 
   <!-- bower:js -->
+  <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/bower_components/angular-strap/dist/angular-strap.js"></script>
+  <script src="/bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+  <script src="/bower_components/extras.angular.plus/ngplus-overlay.js"></script>
+  <script src="/bower_components/moment/moment.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="/bower_components/toastr/toastr.js"></script>
+  <script src="/bower_components/angular-animate/angular-animate.js"></script>
+  <script src="/bower_components/d3/d3.js"></script>
+  <script src="/bower_components/c3/c3.js"></script>
+  <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="/bower_components/iopctrl/iopctrl.js"></script>
+  <script src="/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+  <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
+  <script src="/bower_components/sinon/index.js"></script>
+  <script src="/bower_components/bardjs/dist/bard.js"></script>
+  <script src="/bower_components/bardjs/dist/bard-ngRouteTester.js"></script>
   <!-- endbower -->
 
   <!-- inject:js -->
+  <script src="/src/client/app/app.module.js"></script>
+  <script src="/src/client/app/admin/admin.module.js"></script>
+  <script src="/src/client/app/animals/animals.module.js"></script>
+  <script src="/src/client/app/blocks/exception/exception.module.js"></script>
+  <script src="/src/client/app/blocks/logger/logger.module.js"></script>
+  <script src="/src/client/app/blocks/router/router.module.js"></script>
+  <script src="/src/client/app/core/core.module.js"></script>
+  <script src="/src/client/app/dashboard/dashboard.module.js"></script>
+  <script src="/src/client/app/houses/houses.module.js"></script>
+  <script src="/src/client/app/index/index.module.js"></script>
+  <script src="/src/client/app/layout/layout.module.js"></script>
+  <script src="/src/client/app/tasks/tasks.module.js"></script>
+  <script src="/src/client/app/user/user.module.js"></script>
+  <script src="/src/client/app/warehouses/warehouses.module.js"></script>
+  <script src="/src/client/app/widgets/widgets.module.js"></script>
+  <script src="/src/client/app/zoo-zone/zoo-zone.module.js"></script>
+  <script src="/src/client/app/admin/admin.controller.js"></script>
+  <script src="/src/client/app/admin/admin.factory.js"></script>
+  <script src="/src/client/app/admin/admin.route.js"></script>
+  <script src="/src/client/app/animals/animals.controller.js"></script>
+  <script src="/src/client/app/animals/animals.route.js"></script>
+  <script src="/src/client/app/animals/animalservice.js"></script>
+  <script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
+  <script src="/src/client/app/blocks/exception/exception.js"></script>
+  <script src="/src/client/app/blocks/logger/logger.js"></script>
+  <script src="/src/client/app/blocks/router/router-helper.provider.js"></script>
+  <script src="/src/client/app/core/config.js"></script>
+  <script src="/src/client/app/core/constants.js"></script>
+  <script src="/src/client/app/core/core.factory.js"></script>
+  <script src="/src/client/app/core/core.route.js"></script>
+  <script src="/src/client/app/dashboard/dashboard.controller.js"></script>
+  <script src="/src/client/app/dashboard/dashboard.directives.js"></script>
+  <script src="/src/client/app/dashboard/dashboard.factory.js"></script>
+  <script src="/src/client/app/dashboard/dashboard.route.js"></script>
+  <script src="/src/client/app/houses/houses.controller.js"></script>
+  <script src="/src/client/app/houses/houses.factory.js"></script>
+  <script src="/src/client/app/houses/houses.route.js"></script>
+  <script src="/src/client/app/index/index.route.js"></script>
+  <script src="/src/client/app/layout/ht-sidebar.directive.js"></script>
+  <script src="/src/client/app/layout/ht-top-nav.controller.js"></script>
+  <script src="/src/client/app/layout/ht-top-nav.directive.js"></script>
+  <script src="/src/client/app/layout/shell.controller.js"></script>
+  <script src="/src/client/app/layout/sidebar.controller.js"></script>
+  <script src="/src/client/app/tasks/tasks.controller.js"></script>
+  <script src="/src/client/app/tasks/tasks.route.js"></script>
+  <script src="/src/client/app/tasks/tasks.service.js"></script>
+  <script src="/src/client/app/user/user.controller.js"></script>
+  <script src="/src/client/app/user/user.factory.js"></script>
+  <script src="/src/client/app/user/user.route.js"></script>
+  <script src="/src/client/app/warehouses/supply.controller.js"></script>
+  <script src="/src/client/app/warehouses/warehouses.controller.js"></script>
+  <script src="/src/client/app/warehouses/warehouses.directives.js"></script>
+  <script src="/src/client/app/warehouses/warehouses.factory.js"></script>
+  <script src="/src/client/app/warehouses/warehouses.route.js"></script>
+  <script src="/src/client/app/widgets/ht-img-person.directive.js"></script>
+  <script src="/src/client/app/widgets/ht-widget-header.directive.js"></script>
+  <script src="/src/client/app/zoo-zone/zoo-zone-add.controller.js"></script>
+  <script src="/src/client/app/zoo-zone/zoo-zone-edit.controller.js"></script>
+  <script src="/src/client/app/zoo-zone/zoo-zone-form.component.js"></script>
+  <script src="/src/client/app/zoo-zone/zoo-zone.controller.js"></script>
+  <script src="/src/client/app/zoo-zone/zoo-zone.factory.js"></script>
+  <script src="/src/client/app/zoo-zone/zoo-zone.route.js"></script>
   <!-- endinject -->
 
   <!-- inject:spechelpers:js -->
+  <script src="/src/client/test-helpers/mock-data.js"></script>
   <!-- endinject -->
 
   <!-- inject:specs:js -->
+  <script src="/src/client/app/blocks/exception/exception-handler.provider.spec.js"></script>
+  <script src="/src/client/app/core/core.route.spec.js"></script>
+  <script src="/src/client/app/layout/ht-sidebar.directive.spec.js"></script>
+  <script src="/src/client/app/layout/shell.controller.spec.js"></script>
+  <script src="/src/client/app/layout/sidebar.controller.spec.js"></script>
   <!-- endinject -->
 
   <!-- inject:templates:js -->
+  <script src="/.tmp/templates.js"></script>
   <!-- endinject -->
 
   <script>

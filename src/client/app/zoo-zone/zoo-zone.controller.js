@@ -44,7 +44,7 @@
       return zooZoneService.getGeoZones().then(function (data) {
         vm.geoZones = data;
         return vm.geoZones;
-      })
+      });
     }
 
     function deleteById(id, index) {

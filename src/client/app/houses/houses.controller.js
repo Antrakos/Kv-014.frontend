@@ -17,7 +17,7 @@
 
     vm.zooZones = [];
 
-    vm.zooZonesFilter = [{id: 0, name: "All"}];
+    vm.zooZonesFilter = [{id: 0, name: 'All'}];
 
     vm.hasAnimals = function () {
       return vm.animals.length > 0;
@@ -98,7 +98,7 @@
 
     function getZoneName(id) {
       for (var i = 0; i < vm.zooZones.length; i++) {
-        if (vm.zooZones[i].id == id) {
+        if (vm.zooZones[i].id === id) {
           return vm.zooZones[i].name;
         }
       }
@@ -106,7 +106,7 @@
 
     function getPopulation(houseId) {
       for (var i = 0; i < vm.populations.length; i++) {
-        if (vm.populations[i].id == id) {
+        if (vm.populations[i].id === houseId) {
           return vm.zooZones[i].name;
         }
       }
@@ -115,11 +115,11 @@
     function toggleHouseSelection(house) {
 
       if (vm.selectedHouse != null) {
-        if (vm.selectedHouse.id == undefined) {
+        if (vm.selectedHouse.id === undefined) {
           vm.houses.splice(vm.houses.indexOf(vm.selectedHouse), 1);
         }
 
-        if (vm.selectedHouse.id == house.id) {
+        if (vm.selectedHouse.id === house.id) {
           deselectHouse();
         } else {
           selectHouse(house);
