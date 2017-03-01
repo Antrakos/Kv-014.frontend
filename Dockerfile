@@ -21,5 +21,5 @@ RUN npm install
 RUN bower install --allow-root --force
 RUN gulp build || true
 
-EXPOSE 8001
+EXPOSE 8080
 ENTRYPOINT ["node", "./src/server/app.js"]

@@ -6,7 +6,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var port = process.env.PORT || 8001;
+var port = process.env.PORT || 8080;
 
 var environment = process.env.NODE_ENV;
 

@@ -23,7 +23,7 @@
   }
 
   function urlConstants() {
-    var resource = 'http://localhost:8080/api/v1/';
+    var resource = 'http://localhost:8010/api/v1/';
     return {
       BASE_URL: resource,
       GEO_ZONES: resource + 'geo-zones',
